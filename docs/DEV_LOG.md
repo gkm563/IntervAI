@@ -1098,3 +1098,7 @@ Daily activity and development milestones tracking.
 - **Activity**: chore: sync environment configurations
 - **Checkpoint**: `462208`
 
+### Milestone: 2025-09-02 19:18:07
+- **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
+- **Ref**: `chk-306130`
+
