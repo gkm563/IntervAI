@@ -2434,3 +2434,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(prompt): improve roleplay persona context injection`
 - **Ref**: `sync-199703`
 
+### Sprint Update: 2025-09-09 19:41:48
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-219537`
+
