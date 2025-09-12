@@ -1142,3 +1142,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
 - **Ref**: `chk-972397`
 
+### Milestone: 2025-09-12 13:52:54
+- **Scope**: `perf(streaming): implement WebSocket streaming for real-time AI feedback generation`
+- **Ref**: `chk-535615`
+
