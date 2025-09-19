@@ -1174,3 +1174,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(setup): document local development walkthrough and API key requirements`
 - **Ref**: `chk-118539`
 
+### Milestone: 2025-09-19 16:49:47
+- **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
+- **Ref**: `chk-587462`
+
