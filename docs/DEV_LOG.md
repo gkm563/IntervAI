@@ -1230,3 +1230,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
 - **Ref**: `chk-910806`
 
+### Milestone: 2025-09-28 12:10:38
+- **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
+- **Ref**: `chk-602990`
+
