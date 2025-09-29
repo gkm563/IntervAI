@@ -2514,3 +2514,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(eval): add regression tests for scoring consistency`
 - **Ref**: `sync-659517`
 
+### Sprint Update: 2025-09-29 23:20:58
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-957670`
+
