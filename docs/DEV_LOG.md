@@ -1250,3 +1250,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-717386`
 
+### Milestone: 2025-09-30 14:05:23
+- **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
+- **Ref**: `chk-941732`
+
