@@ -1266,3 +1266,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-168214`
 
+### Milestone: 2025-10-01 21:44:34
+- **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
+- **Ref**: `chk-743366`
+
