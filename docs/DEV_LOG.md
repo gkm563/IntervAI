@@ -1294,3 +1294,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
 - **Ref**: `chk-237954`
 
+### Milestone: 2025-10-06 17:15:31
+- **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
+- **Ref**: `chk-663059`
+
