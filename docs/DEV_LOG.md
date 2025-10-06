@@ -1290,3 +1290,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-840081`
 
+### Milestone: 2025-10-06 16:45:08
+- **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
+- **Ref**: `chk-237954`
+
