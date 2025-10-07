@@ -1310,3 +1310,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
 - **Ref**: `chk-896613`
 
+### Milestone: 2025-10-07 21:08:26
+- **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
+- **Ref**: `chk-675190`
+
