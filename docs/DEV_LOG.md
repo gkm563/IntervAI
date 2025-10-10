@@ -1318,3 +1318,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
 - **Ref**: `chk-233958`
 
+### Milestone: 2025-10-10 14:34:56
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-286094`
+
