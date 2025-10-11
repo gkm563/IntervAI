@@ -1334,3 +1334,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(env): sync development environment variables and model weights config`
 - **Ref**: `chk-844416`
 
+### Milestone: 2025-10-11 15:32:43
+- **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
+- **Ref**: `chk-974257`
+
