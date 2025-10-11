@@ -1330,3 +1330,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
 - **Ref**: `chk-640226`
 
+### Milestone: 2025-10-11 11:37:01
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-844416`
+
