@@ -1382,3 +1382,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
 - **Ref**: `chk-614214`
 
+### Milestone: 2025-10-21 12:19:54
+- **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
+- **Ref**: `chk-326205`
+
