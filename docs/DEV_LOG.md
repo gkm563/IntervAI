@@ -1418,3 +1418,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-912522`
 
+### Milestone: 2025-10-26 11:12:31
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-944818`
+
