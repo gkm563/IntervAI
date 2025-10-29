@@ -1434,3 +1434,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
 - **Ref**: `chk-587788`
 
+### Milestone: 2025-10-29 12:22:48
+- **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
+- **Ref**: `chk-803075`
+
