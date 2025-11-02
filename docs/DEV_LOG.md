@@ -1450,3 +1450,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(setup): document local development walkthrough and API key requirements`
 - **Ref**: `chk-581520`
 
+### Milestone: 2025-11-02 19:10:25
+- **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
+- **Ref**: `chk-313788`
+
