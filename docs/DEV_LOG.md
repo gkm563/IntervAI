@@ -1534,3 +1534,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
 - **Ref**: `chk-273282`
 
+### Milestone: 2025-11-14 16:55:33
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-733872`
+
