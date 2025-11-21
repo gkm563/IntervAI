@@ -1554,3 +1554,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
 - **Ref**: `chk-318065`
 
+### Milestone: 2025-11-21 15:35:36
+- **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
+- **Ref**: `chk-423018`
+
