@@ -1614,3 +1614,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
 - **Ref**: `chk-292946`
 
+### Milestone: 2025-12-01 22:20:43
+- **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
+- **Ref**: `chk-739159`
+
