@@ -2866,3 +2866,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(build): optimize frontend bundle chunk splitting`
 - **Ref**: `sync-307429`
 
+### Sprint Update: 2025-12-05 11:54:48
+- **Scope**: `test(eval): add regression tests for scoring consistency`
+- **Ref**: `sync-367645`
+
