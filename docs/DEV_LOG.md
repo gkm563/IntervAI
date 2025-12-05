@@ -1638,3 +1638,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-172881`
 
+### Milestone: 2025-12-05 20:29:42
+- **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
+- **Ref**: `chk-749342`
+
