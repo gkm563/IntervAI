@@ -1646,3 +1646,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-671651`
 
+### Milestone: 2025-12-07 12:42:14
+- **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
+- **Ref**: `chk-590992`
+
