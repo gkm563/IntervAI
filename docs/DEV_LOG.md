@@ -1654,3 +1654,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `perf(streaming): implement WebSocket streaming for real-time AI feedback generation`
 - **Ref**: `chk-331446`
 
+### Milestone: 2025-12-08 21:42:51
+- **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
+- **Ref**: `chk-874871`
+
