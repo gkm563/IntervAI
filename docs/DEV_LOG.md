@@ -2882,3 +2882,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(eval): add regression tests for scoring consistency`
 - **Ref**: `sync-178154`
 
+### Sprint Update: 2025-12-10 11:42:03
+- **Scope**: `docs(rubric): document interview score distribution percentiles`
+- **Ref**: `sync-111601`
+
