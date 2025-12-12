@@ -1686,3 +1686,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
 - **Ref**: `chk-255767`
 
+### Milestone: 2025-12-12 10:11:46
+- **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
+- **Ref**: `chk-158237`
+
