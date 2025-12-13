@@ -1690,3 +1690,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
 - **Ref**: `chk-158237`
 
+### Milestone: 2025-12-13 11:56:28
+- **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
+- **Ref**: `chk-874416`
+
