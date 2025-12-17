@@ -1702,3 +1702,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-988760`
 
+### Milestone: 2025-12-17 11:29:53
+- **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
+- **Ref**: `chk-234218`
+
