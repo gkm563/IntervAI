@@ -1706,3 +1706,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-234218`
 
+### Milestone: 2025-12-19 16:23:44
+- **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
+- **Ref**: `chk-376842`
+
