@@ -1722,3 +1722,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `perf(streaming): implement WebSocket streaming for real-time AI feedback generation`
 - **Ref**: `chk-222880`
 
+### Milestone: 2025-12-23 11:29:47
+- **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
+- **Ref**: `chk-806889`
+
