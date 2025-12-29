@@ -1774,3 +1774,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(env): sync development environment variables and model weights config`
 - **Ref**: `chk-680252`
 
+### Milestone: 2025-12-29 11:52:40
+- **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
+- **Ref**: `chk-976630`
+
