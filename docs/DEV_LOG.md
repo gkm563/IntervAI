@@ -1866,3 +1866,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(env): sync development environment variables and model weights config`
 - **Ref**: `chk-225584`
 
+### Milestone: 2026-01-11 19:50:13
+- **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
+- **Ref**: `chk-404022`
+
