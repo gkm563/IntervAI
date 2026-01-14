@@ -1894,3 +1894,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
 - **Ref**: `chk-761896`
 
+### Milestone: 2026-01-14 15:48:33
+- **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
+- **Ref**: `chk-310269`
+
