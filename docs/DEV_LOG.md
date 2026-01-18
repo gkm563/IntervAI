@@ -1918,3 +1918,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
 - **Ref**: `chk-646306`
 
+### Milestone: 2026-01-18 22:02:25
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-912579`
+
