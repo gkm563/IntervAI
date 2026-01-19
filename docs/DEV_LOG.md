@@ -1922,3 +1922,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(env): sync development environment variables and model weights config`
 - **Ref**: `chk-912579`
 
+### Milestone: 2026-01-19 17:48:01
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-181901`
+
