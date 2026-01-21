@@ -1930,3 +1930,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
 - **Ref**: `chk-652771`
 
+### Milestone: 2026-01-21 11:38:01
+- **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
+- **Ref**: `chk-502290`
+
