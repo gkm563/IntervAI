@@ -1950,3 +1950,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
 - **Ref**: `chk-377248`
 
+### Milestone: 2026-01-23 17:53:39
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-754037`
+
