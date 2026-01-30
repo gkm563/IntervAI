@@ -1990,3 +1990,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-664376`
 
+### Milestone: 2026-01-30 16:44:22
+- **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
+- **Ref**: `chk-645888`
+
