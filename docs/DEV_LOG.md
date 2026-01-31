@@ -3142,3 +3142,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(eval): add regression tests for scoring consistency`
 - **Ref**: `sync-558301`
 
+### Sprint Update: 2026-01-31 15:06:45
+- **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
+- **Ref**: `sync-762590`
+
