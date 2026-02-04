@@ -2026,3 +2026,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(setup): document local development walkthrough and API key requirements`
 - **Ref**: `chk-490108`
 
+### Milestone: 2026-02-04 11:37:05
+- **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
+- **Ref**: `chk-775350`
+
