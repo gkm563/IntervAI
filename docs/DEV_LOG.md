@@ -2038,3 +2038,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-756964`
 
+### Milestone: 2026-02-05 14:55:07
+- **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
+- **Ref**: `chk-459788`
+
