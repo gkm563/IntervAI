@@ -3174,3 +3174,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(build): optimize frontend bundle chunk splitting`
 - **Ref**: `sync-503143`
 
+### Sprint Update: 2026-02-06 12:30:20
+- **Scope**: `feat(scoring): implement nuanced rubric weights for technical answers`
+- **Ref**: `sync-922342`
+
