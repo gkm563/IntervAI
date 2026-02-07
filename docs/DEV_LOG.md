@@ -2054,3 +2054,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(parser): gracefully handle malformed JSON responses from LLM completion endpoints`
 - **Ref**: `chk-458317`
 
+### Milestone: 2026-02-07 21:55:04
+- **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
+- **Ref**: `chk-881093`
+
