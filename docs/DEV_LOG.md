@@ -3182,3 +3182,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
 - **Ref**: `sync-402309`
 
+### Sprint Update: 2026-02-08 22:49:07
+- **Scope**: `refactor(prompt): improve roleplay persona context injection`
+- **Ref**: `sync-228907`
+
