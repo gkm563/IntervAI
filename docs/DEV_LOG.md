@@ -3242,3 +3242,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(build): optimize frontend bundle chunk splitting`
 - **Ref**: `sync-555039`
 
+### Sprint Update: 2026-02-18 15:40:54
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-585270`
+
