@@ -2122,3 +2122,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
 - **Ref**: `chk-475816`
 
+### Milestone: 2026-02-19 12:09:18
+- **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
+- **Ref**: `chk-951578`
+
