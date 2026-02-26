@@ -2182,3 +2182,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
 - **Ref**: `chk-262590`
 
+### Milestone: 2026-02-26 16:32:56
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-612287`
+
