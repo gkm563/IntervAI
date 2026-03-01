@@ -2214,3 +2214,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
 - **Ref**: `chk-716431`
 
+### Milestone: 2026-03-01 21:26:37
+- **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
+- **Ref**: `chk-438043`
+
