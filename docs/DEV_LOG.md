@@ -2210,3 +2210,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(llm): decouple prompt templates from core candidate evaluation engine`
 - **Ref**: `chk-934451`
 
+### Milestone: 2026-03-01 20:54:59
+- **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
+- **Ref**: `chk-716431`
+
