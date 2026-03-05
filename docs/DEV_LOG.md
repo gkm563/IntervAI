@@ -2242,3 +2242,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-665647`
 
+### Milestone: 2026-03-05 13:11:05
+- **Scope**: `chore(env): sync development environment variables and model weights config`
+- **Ref**: `chk-894186`
+
