@@ -2258,3 +2258,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
 - **Ref**: `chk-418799`
 
+### Milestone: 2026-03-08 15:07:19
+- **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
+- **Ref**: `chk-953835`
+
