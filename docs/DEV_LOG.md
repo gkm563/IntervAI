@@ -2266,3 +2266,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(session): optimize audio session lifecycle and memory cleanup handlers`
 - **Ref**: `chk-880578`
 
+### Milestone: 2026-03-10 15:25:18
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-751708`
+
