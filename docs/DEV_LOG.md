@@ -2290,3 +2290,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
 - **Ref**: `chk-633896`
 
+### Milestone: 2026-03-16 19:50:13
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-291898`
+
