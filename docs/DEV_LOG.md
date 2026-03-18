@@ -2306,3 +2306,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `style(ui): polish interview playback waveform and candidate confidence metrics`
 - **Ref**: `chk-708643`
 
+### Milestone: 2026-03-18 16:46:05
+- **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
+- **Ref**: `chk-649260`
+
