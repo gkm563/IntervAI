@@ -2298,3 +2298,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(audio): address chunk boundary artifacts in speech-to-text transcription`
 - **Ref**: `chk-494593`
 
+### Milestone: 2026-03-18 09:57:16
+- **Scope**: `feat(evaluator): enhance dynamic interview question generation with difficulty scaling`
+- **Ref**: `chk-473306`
+
