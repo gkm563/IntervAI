@@ -2314,3 +2314,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
 - **Ref**: `chk-226882`
 
+### Milestone: 2026-03-20 19:20:08
+- **Scope**: `perf(streaming): implement WebSocket streaming for real-time AI feedback generation`
+- **Ref**: `chk-669027`
+
