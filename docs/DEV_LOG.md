@@ -2362,3 +2362,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): define multi-criteria scoring rubrics for behavioral and technical rounds`
 - **Ref**: `chk-834843`
 
+### Milestone: 2026-03-27 20:16:24
+- **Scope**: `test(mock): add automated evaluation assertions against gold standard transcripts`
+- **Ref**: `chk-458714`
+
