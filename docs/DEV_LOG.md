@@ -2374,3 +2374,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(report): generate downloadable candidate assessment performance summary`
 - **Ref**: `chk-297934`
 
+### Milestone: 2026-03-29 15:28:28
+- **Scope**: `docs(setup): document local development walkthrough and API key requirements`
+- **Ref**: `chk-160777`
+
