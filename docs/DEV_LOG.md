@@ -226,3 +226,7 @@ Daily activity and development milestones tracking.
 - **Activity**: docs(architecture): add prompt engineering notes
 - **Checkpoint**: `651518`
 
+### Entry: 2026-05-05 13:16:28
+- **Activity**: docs: update developer setup walkthrough
+- **Checkpoint**: `771406`
+
