@@ -3586,3 +3586,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `perf(token): compress chat history before passing to LLM context`
 - **Ref**: `sync-376832`
 
+### Sprint Update: 2026-05-07 14:41:59
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-854271`
+
