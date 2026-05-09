@@ -262,3 +262,7 @@ Daily activity and development milestones tracking.
 - **Activity**: chore: sync environment configurations
 - **Checkpoint**: `904208`
 
+### Entry: 2026-05-09 15:00:17
+- **Activity**: docs: update developer setup walkthrough
+- **Checkpoint**: `930387`
+
