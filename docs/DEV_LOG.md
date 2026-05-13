@@ -298,3 +298,7 @@ Daily activity and development milestones tracking.
 - **Activity**: test: verify audio transcript handler
 - **Checkpoint**: `612965`
 
+### Entry: 2026-05-13 19:21:28
+- **Activity**: docs(architecture): add prompt engineering notes
+- **Checkpoint**: `870844`
+
