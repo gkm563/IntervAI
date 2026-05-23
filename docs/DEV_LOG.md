@@ -3662,3 +3662,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
 - **Ref**: `sync-561809`
 
+### Sprint Update: 2026-05-23 11:15:52
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-230496`
+
