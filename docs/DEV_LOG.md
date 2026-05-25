@@ -3690,3 +3690,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): document interview score distribution percentiles`
 - **Ref**: `sync-664051`
 
+### Sprint Update: 2026-05-25 21:40:26
+- **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
+- **Ref**: `sync-689516`
+
