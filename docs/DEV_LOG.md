@@ -3754,3 +3754,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `chore(build): optimize frontend bundle chunk splitting`
 - **Ref**: `sync-535342`
 
+### Sprint Update: 2026-06-01 16:16:56
+- **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
+- **Ref**: `sync-561223`
+
