@@ -3766,3 +3766,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): document interview score distribution percentiles`
 - **Ref**: `sync-681348`
 
+### Sprint Update: 2026-06-02 10:22:21
+- **Scope**: `chore(build): optimize frontend bundle chunk splitting`
+- **Ref**: `sync-888175`
+
