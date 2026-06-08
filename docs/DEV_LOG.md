@@ -3818,3 +3818,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(scoring): implement nuanced rubric weights for technical answers`
 - **Ref**: `sync-342101`
 
+### Sprint Update: 2026-06-08 19:06:41
+- **Scope**: `fix(latency): optimize streaming audio buffer to reduce lag`
+- **Ref**: `sync-698257`
+
