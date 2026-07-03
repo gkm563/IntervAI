@@ -602,3 +602,7 @@ Daily activity and development milestones tracking.
 - **Activity**: perf: optimize token context management
 - **Checkpoint**: `822557`
 
+### Entry: 2026-07-03 15:24:06
+- **Activity**: docs(architecture): add prompt engineering notes
+- **Checkpoint**: `660464`
+
