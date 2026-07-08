@@ -3942,3 +3942,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(eval): add regression tests for scoring consistency`
 - **Ref**: `sync-582122`
 
+### Sprint Update: 2026-07-08 22:27:51
+- **Scope**: `feat(scoring): implement nuanced rubric weights for technical answers`
+- **Ref**: `sync-377077`
+
