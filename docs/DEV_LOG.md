@@ -730,3 +730,7 @@ Daily activity and development milestones tracking.
 - **Activity**: chore: sync environment configurations
 - **Checkpoint**: `333521`
 
+### Entry: 2026-07-20 19:14:56
+- **Activity**: docs(architecture): add prompt engineering notes
+- **Checkpoint**: `286953`
+
