@@ -738,3 +738,7 @@ Daily activity and development milestones tracking.
 - **Activity**: perf: optimize token context management
 - **Checkpoint**: `721570`
 
+### Entry: 2026-07-20 22:00:41
+- **Activity**: docs: update developer setup walkthrough
+- **Checkpoint**: `899412`
+
