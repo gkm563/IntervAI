@@ -798,3 +798,7 @@ Daily activity and development milestones tracking.
 - **Activity**: feat(agent): update interview question evaluation logic
 - **Checkpoint**: `736797`
 
+### Entry: 2026-07-31 10:00:38
+- **Activity**: docs: update developer setup walkthrough
+- **Checkpoint**: `684939`
+
