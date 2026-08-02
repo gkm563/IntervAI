@@ -4082,3 +4082,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(scoring): implement nuanced rubric weights for technical answers`
 - **Ref**: `sync-189031`
 
+### Sprint Update: 2026-08-02 18:16:20
+- **Scope**: `docs(rubric): document interview score distribution percentiles`
+- **Ref**: `sync-784290`
+
