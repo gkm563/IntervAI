@@ -4110,3 +4110,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `feat(scoring): implement nuanced rubric weights for technical answers`
 - **Ref**: `sync-818685`
 
+### Sprint Update: 2026-08-06 15:07:17
+- **Scope**: `perf(token): compress chat history before passing to LLM context`
+- **Ref**: `sync-902590`
+
