@@ -4178,3 +4178,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `docs(rubric): document interview score distribution percentiles`
 - **Ref**: `sync-606712`
 
+### Sprint Update: 2026-08-17 18:15:40
+- **Scope**: `refactor(prompt): improve roleplay persona context injection`
+- **Ref**: `sync-519151`
+
