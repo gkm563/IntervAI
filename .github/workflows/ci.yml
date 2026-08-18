@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-          npm ci
+          npm ci --include=optional || npm install --prefer-offline --no-audit
 
       - name: Typecheck and Build
         run: |
@@ -49,7 +49,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd frontend
-          npm ci
+          npm ci --include=optional || npm install --prefer-offline --no-audit
 
       - name: Typecheck and Build
         run: |
