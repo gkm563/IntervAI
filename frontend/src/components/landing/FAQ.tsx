@@ -40,17 +40,17 @@ export const FAQ: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="py-20 lg:py-28 bg-[#070F22] border-t border-slate-800">
+    <section id="faq" className="py-20 lg:py-28 bg-slate-50/50 dark:bg-[#070F22] border-t border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-700">
-            <HelpCircle className="w-3.5 h-3.5 text-sky-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold border border-slate-300 dark:border-slate-700">
+            <HelpCircle className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span>Got Questions?</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
             Frequently Asked Questions
           </h2>
-          <p className="text-slate-400 text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-base">
             Everything you need to know about preparing with IntervAI.
           </p>
         </div>
@@ -61,22 +61,26 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="glass-card rounded-xl border border-slate-800/80 overflow-hidden transition-all"
+                className="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 text-left text-white font-semibold text-sm sm:text-base hover:text-sky-300 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors cursor-pointer"
                 >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-slate-400 transition-transform duration-200 flex-shrink-0 ml-4 ${
-                      isOpen ? 'rotate-180 text-sky-400' : ''
+                  <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+                    {faq.q}
+                  </span>
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform ${
+                      isOpen ? 'rotate-180 bg-sky-50 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                     }`}
-                  />
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-slate-400 text-sm leading-relaxed border-t border-slate-800/50">
+                  <div className="px-6 pb-6 pt-1 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-100 dark:border-slate-800/60">
                     {faq.a}
                   </div>
                 )}

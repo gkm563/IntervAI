@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`sticky top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? 'bg-[#070F22]/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/20'
+          ? 'bg-white/95 dark:bg-[#070F22]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 shadow-md dark:shadow-black/20'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -40,86 +40,92 @@ export const Navbar: React.FC = () => {
               <Bot className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5 font-['Plus_Jakarta_Sans',sans-serif]">
-                Interv<span className="text-sky-400">AI</span>
+              <span className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 font-['Plus_Jakarta_Sans',sans-serif]">
+                Interv<span className="text-sky-600 dark:text-sky-400">AI</span>
               </span>
-              <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-400 -mt-1">
+              <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-500 dark:text-slate-400 -mt-1">
                 AI Interview Coach
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <a href="#how-it-works" className="hover:text-sky-400 transition-colors">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a href="#how-it-works" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
               How It Works
             </a>
-            <a href="#features" className="hover:text-sky-400 transition-colors">
+            <a href="#features" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
               Features
             </a>
-            <a href="#modes" className="hover:text-sky-400 transition-colors">
+            <a href="#modes" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
               Interview Modes
             </a>
-            <a href="#pricing" className="hover:text-sky-400 transition-colors">
+            <a href="#pricing" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
               Pricing
             </a>
-            <a href="#faq" className="hover:text-sky-400 transition-colors">
+            <a href="#faq" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
               FAQ
             </a>
           </nav>
 
-          {/* Desktop Auth Buttons & Theme Toggle */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* Desktop CTA / Auth Buttons */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Light / Dark Mode Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg border border-slate-700 bg-slate-800/80 text-sky-400 hover:bg-slate-700 transition-colors"
-              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+              className="p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-all cursor-pointer shadow-sm"
             >
-              {theme === 'light' ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4" />}
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
             </button>
 
-            {isAuthenticated && user ? (
+            {isAuthenticated ? (
               <div className="flex items-center gap-3">
                 <Link
                   to="/dashboard"
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-lg transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-colors"
                 >
                   <LayoutDashboard className="w-4 h-4 text-sky-400" />
-                  Dashboard
+                  <span>Dashboard</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                  className="p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
                   title="Log out"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
               </div>
             ) : (
-              <>
+              <div className="flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-3 py-2"
+                  className="text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-sky-600 dark:hover:text-white transition-colors px-3 py-2"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/register"
-                  className="flex items-center gap-2 text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 px-5 py-2.5 rounded-lg shadow-md shadow-sky-500/20 hover:shadow-sky-500/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-sky-500 via-sky-600 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 shadow-md shadow-sky-500/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Sparkles className="w-4 h-4" />
-                  Get Started Free
+                  <span>Get Started Free</span>
                 </Link>
-              </>
+              </div>
             )}
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="flex md:hidden items-center">
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
-              aria-label="Toggle menu"
+              className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -127,65 +133,66 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0B1B3A] border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
-          <a
-            href="#how-it-works"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-sky-400 rounded-md"
-          >
-            How It Works
-          </a>
-          <a
-            href="#features"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-sky-400 rounded-md"
-          >
-            Features
-          </a>
-          <a
-            href="#modes"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-sky-400 rounded-md"
-          >
-            Interview Modes
-          </a>
-          <a
-            href="#pricing"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-sky-400 rounded-md"
-          >
-            Pricing
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-slate-300 hover:text-sky-400 rounded-md"
-          >
-            FAQ
-          </a>
+        <div className="md:hidden bg-white dark:bg-[#070F22] border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+          <nav className="flex flex-col space-y-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+            <a
+              href="#how-it-works"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+            >
+              How It Works
+            </a>
+            <a
+              href="#features"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+            >
+              Features
+            </a>
+            <a
+              href="#modes"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+            >
+              Interview Modes
+            </a>
+            <a
+              href="#pricing"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+            >
+              Pricing
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+            >
+              FAQ
+            </a>
+          </nav>
 
-          <div className="pt-4 border-t border-slate-800 space-y-2">
+          <div className="border-t border-slate-200 dark:border-slate-800 pt-4 flex flex-col gap-2.5">
             {isAuthenticated ? (
               <>
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-semibold text-white bg-slate-800 hover:bg-slate-700 rounded-lg"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm text-white bg-slate-800 hover:bg-slate-700"
                 >
                   <LayoutDashboard className="w-4 h-4 text-sky-400" />
-                  Go to Dashboard
+                  <span>Go to Dashboard</span>
                 </Link>
                 <button
                   onClick={() => {
-                    setMobileMenuOpen(false);
                     handleLogout();
+                    setMobileMenuOpen(false);
                   }}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-medium text-red-400 bg-red-500/10 hover:bg-red-500/20 rounded-lg"
+                  className="w-full py-2.5 rounded-xl font-semibold text-sm text-rose-500 hover:bg-rose-500/10"
                 >
-                  <LogOut className="w-4 h-4" />
-                  Log Out
+                  Log out
                 </button>
               </>
             ) : (
@@ -193,17 +200,17 @@ export const Navbar: React.FC = () => {
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-center w-full px-4 py-2.5 text-sm font-medium text-slate-200 bg-slate-800/60 rounded-lg"
+                  className="w-full text-center py-2.5 rounded-xl font-bold text-sm text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                 >
                   Log in
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-2.5 text-sm font-semibold text-white bg-sky-500 hover:bg-sky-400 rounded-lg shadow-md shadow-sky-500/20"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-sky-500 to-indigo-600 shadow-md shadow-sky-500/20"
                 >
                   <Sparkles className="w-4 h-4" />
-                  Get Started Free
+                  <span>Get Started Free</span>
                 </Link>
               </>
             )}

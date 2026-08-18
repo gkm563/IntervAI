@@ -30,14 +30,14 @@ export const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 bg-[#0B1B3A]/60 border-t border-slate-800">
+    <section id="how-it-works" className="py-20 lg:py-28 bg-white dark:bg-[#0B1B3A]/60 border-t border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <h2 className="text-xs uppercase font-bold tracking-widest text-sky-400">The Workflow</h2>
-          <p className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
+          <h2 className="text-xs uppercase font-bold tracking-widest text-sky-600 dark:text-sky-400">The Workflow</h2>
+          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
             How IntervAI prepares you for the real room
           </p>
-          <p className="text-slate-400 text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-base">
             A seamless 4-step loop designed to transform interview anxiety into repeatable confidence.
           </p>
         </div>
@@ -48,27 +48,30 @@ export const HowItWorks: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="glass-card rounded-2xl p-6 relative flex flex-col justify-between glass-card-hover border border-slate-800"
+                className="glass-card rounded-2xl p-6 relative flex flex-col justify-between glass-card-hover border border-slate-200 dark:border-slate-800"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500/20 to-indigo-500/20 border border-sky-500/30 flex items-center justify-center text-sky-600 dark:text-sky-400">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-2xl font-black text-slate-700 select-none">
+                    <span className="text-2xl font-black text-sky-600/30 dark:text-slate-700 select-none">
                       {step.num}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    {step.desc}
+                  </p>
                 </div>
 
-                {idx < steps.length - 1 && (
-                  <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 text-slate-600">
-                    <ArrowRight className="w-5 h-5 text-slate-600" />
-                  </div>
-                )}
+                <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-xs font-bold text-sky-600 dark:text-sky-400 gap-1">
+                  <span>Step {idx + 1} of 4</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
               </div>
             );
           })}

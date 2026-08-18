@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Quote } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 export const SocialProof: React.FC = () => {
   const testimonials = [
@@ -24,14 +24,14 @@ export const SocialProof: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#070F22] border-t border-slate-800">
+    <section className="py-20 bg-white dark:bg-[#070F22] border-t border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <h2 className="text-xs uppercase font-bold tracking-widest text-sky-400">Student Success</h2>
-          <p className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
+          <h2 className="text-xs uppercase font-bold tracking-widest text-sky-600 dark:text-sky-400">Student Success</h2>
+          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight font-['Plus_Jakarta_Sans',sans-serif]">
             Loved by candidates preparing for competitive placements
           </p>
-          <p className="text-slate-400 text-base">
+          <p className="text-slate-600 dark:text-slate-400 text-base">
             From tier-1 colleges to self-taught developers across India and globally.
           </p>
         </div>
@@ -40,7 +40,7 @@ export const SocialProof: React.FC = () => {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="glass-card rounded-2xl p-7 border border-slate-800 flex flex-col justify-between"
+              className="glass-card rounded-2xl p-7 border border-slate-200 dark:border-slate-800 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center gap-1 mb-4">
@@ -48,18 +48,17 @@ export const SocialProof: React.FC = () => {
                     <Star key={s} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-slate-300 text-sm leading-relaxed mb-6 italic">
+                <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-6 italic">
                   &quot;{t.text}&quot;
                 </p>
               </div>
 
-              <div className="border-t border-slate-800/80 pt-4 flex items-center justify-between">
+              <div className="border-t border-slate-100 dark:border-slate-800/80 pt-4 flex items-center justify-between">
                 <div>
-                  <h4 className="text-white font-bold text-sm">{t.name}</h4>
-                  <p className="text-xs text-sky-400 font-medium">{t.role}</p>
-                  <p className="text-[11px] text-slate-500">{t.college}</p>
+                  <h4 className="text-slate-900 dark:text-white font-bold text-sm">{t.name}</h4>
+                  <p className="text-xs text-sky-600 dark:text-sky-400 font-semibold">{t.role}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-500">{t.college}</p>
                 </div>
-                <Quote className="w-6 h-6 text-slate-700" />
               </div>
             </div>
           ))}
