@@ -22,6 +22,7 @@ import {
 import { AvatarCanvas } from './AvatarCanvas';
 import { WebcamPreview } from './WebcamPreview';
 import { VoiceEngine } from './VoiceEngine';
+import { useGamification } from '../../context/GamificationContext';
 
 export type InterviewModality = 'VOICE' | 'VIDEO' | 'TEXT';
 
@@ -79,6 +80,7 @@ export const ActiveInterviewRoom: React.FC<ActiveInterviewRoomProps> = ({
     },
   ];
 
+  const { addXp, unlockBadge } = useGamification();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [candidateAnswer, setCandidateAnswer] = useState('');
   const [isListening, setIsListening] = useState(false);
@@ -192,6 +194,18 @@ export const ActiveInterviewRoom: React.FC<ActiveInterviewRoomProps> = ({
       setSessionScores((prev) => [...prev, overall]);
       setIsEvaluating(false);
 
+      // Award gamification XP
+      addXp(50, `Completed Turn ${currentQuestionIndex + 1}: ${overall}% Score`);
+      if (overall >= 85) {
+        unlockBadge('star_master');
+      }
+      if (modality === 'VOICE') {
+        unlockBadge('voice_champion');
+      }
+      if (modality === 'VIDEO') {
+        unlockBadge('avatar_pro');
+      }
+
       // Speak concise feedback summary in voice mode
       if (modality === 'VOICE' || modality === 'VIDEO') {
         voiceEngineRef.current?.speak(
@@ -214,6 +228,7 @@ export const ActiveInterviewRoom: React.FC<ActiveInterviewRoomProps> = ({
       const avgScore = Math.round(
         sessionScores.reduce((a, b) => a + b, 0) / Math.max(1, sessionScores.length)
       );
+      addXp(150, 'Completed Mock Interview Session!');
       if (onSessionComplete) {
         onSessionComplete(avgScore, { questionsCompleted: questionsList.length });
       }

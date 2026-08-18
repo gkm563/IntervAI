@@ -58,13 +58,18 @@ const PublicOnlyRoute: React.FC<{ children: React.ReactNode }> = ({ children }) 
   return <>{children}</>;
 };
 
+import { ThemeProvider } from './context/ThemeContext';
+import { GamificationProvider } from './context/GamificationContext';
+
 export const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          {/* Public Marketing Landing Page */}
-          <Route path="/" element={<LandingPage />} />
+    <ThemeProvider>
+      <GamificationProvider>
+        <AuthProvider>
+          <Router>
+            <Routes>
+              {/* Public Marketing Landing Page */}
+              <Route path="/" element={<LandingPage />} />
 
           {/* Authentication Routes */}
           <Route
@@ -128,6 +133,8 @@ export const App: React.FC = () => {
         </Routes>
       </Router>
     </AuthProvider>
+    </GamificationProvider>
+    </ThemeProvider>
   );
 };
 
