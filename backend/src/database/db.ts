@@ -79,7 +79,7 @@ export async function query<T extends QueryResultRow = any>(
 }
 
 function executeMockQuery<T extends QueryResultRow>(text: string, params: any[] = []): QueryResult<T> {
-  const normalized = text.trim().toLowerCase();
+  const normalized = text.trim().toLowerCase().replace(/\s+/g, ' ');
 
   // Simple mock handling for users table
   if (normalized.includes('insert into users')) {
@@ -121,10 +121,20 @@ function executeMockQuery<T extends QueryResultRow>(text: string, params: any[] 
     return { rows: user ? [user as unknown as T] : [], rowCount: user ? 1 : 0, command: 'SELECT', oid: 0, fields: [] };
   }
 
-  if (normalized.includes('update users set status = $1, email_verified_at = $2')) {
-    const status = params[0];
-    const verifiedAt = params[1];
-    const userId = params[2];
+  if (normalized.includes('update users set status')) {
+    let status = 'ACTIVE';
+    let verifiedAt: any = new Date();
+    let userId: string = '';
+
+    if (normalized.includes('status = $1')) {
+      status = params[0];
+      verifiedAt = params[1];
+      userId = params[2];
+    } else {
+      verifiedAt = params[0];
+      userId = params[1];
+    }
+
     const user = mockStore.users.get(userId);
     if (user) {
       user.status = status;
