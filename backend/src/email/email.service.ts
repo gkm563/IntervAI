@@ -2,20 +2,34 @@ import nodemailer from 'nodemailer';
 import { config } from '../config';
 
 class EmailService {
-  private transporter: nodemailer.Transporter | null = null;
+  private getTransporter(): nodemailer.Transporter | null {
+    const isGmail = config.email.provider === 'gmail' || config.email.smtp.host.includes('gmail');
+    const user = config.email.smtp.user || 'maurgk212104@gmail.com';
+    const pass = config.email.smtp.pass;
 
-  constructor() {
-    if (config.email.provider === 'smtp' && config.email.smtp.host) {
-      this.transporter = nodemailer.createTransport({
-        host: config.email.smtp.host,
-        port: config.email.smtp.port,
-        secure: config.email.smtp.port === 465,
+    if (!pass) {
+      return null;
+    }
+
+    if (isGmail) {
+      return nodemailer.createTransport({
+        service: 'gmail',
         auth: {
-          user: config.email.smtp.user,
-          pass: config.email.smtp.pass,
+          user,
+          pass, // 16-character Gmail App Password
         },
       });
     }
+
+    return nodemailer.createTransport({
+      host: config.email.smtp.host,
+      port: config.email.smtp.port,
+      secure: config.email.smtp.port === 465,
+      auth: {
+        user,
+        pass,
+      },
+    });
   }
 
   async sendVerificationOtp(email: string, otpCode: string, fullName: string): Promise<void> {
@@ -23,16 +37,31 @@ class EmailService {
     const text = `Hello ${fullName},\n\nYour 6-digit verification code for IntervAI is: ${otpCode}\n\nThis code expires in 10 minutes. If you did not request this, please ignore this email.\n\nBest regards,\nThe IntervAI Team`;
     
     const html = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background-color: #0B1B3A; color: #ffffff; border-radius: 12px;">
-        <h1 style="color: #38bdf8; margin-bottom: 8px;">IntervAI</h1>
-        <p style="font-size: 16px; color: #e2e8f0;">Hello ${fullName},</p>
-        <p style="font-size: 15px; color: #cbd5e1;">Welcome to IntervAI! Enter the following 6-digit code to verify your account and start your interview preparation:</p>
-        <div style="background-color: #1e293b; padding: 18px; border-radius: 8px; text-align: center; margin: 24px 0; border: 1px solid #334155;">
-          <span style="font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #38bdf8;">${otpCode}</span>
+      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px 24px; background-color: #0B1B3A; color: #ffffff; border-radius: 16px; border: 1px solid #1e3a6e;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h1 style="color: #38bdf8; font-size: 28px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">Interv<span style="color: #ffffff;">AI</span></h1>
+          <p style="color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">AI Interview Simulation Platform</p>
         </div>
-        <p style="font-size: 14px; color: #94a3b8;">This code expires in <strong>10 minutes</strong>. Never share this code with anyone.</p>
-        <hr style="border: 0; border-top: 1px solid #334155; margin: 24px 0;" />
-        <p style="font-size: 12px; color: #64748b;">If you did not register for an IntervAI account, please disregard this email.</p>
+
+        <p style="font-size: 16px; color: #f8fafc; margin-bottom: 12px;">Hello <strong>${fullName}</strong>,</p>
+        <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 24px;">
+          Welcome to IntervAI! Use the following 6-digit verification code to confirm your email address and activate your mock interview workspace:
+        </p>
+
+        <div style="background: linear-gradient(135deg, #0f244c 0%, #1e293b 100%); padding: 24px; border-radius: 12px; text-align: center; margin: 28px 0; border: 1px solid #38bdf8; box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);">
+          <span style="font-size: 36px; font-weight: 900; letter-spacing: 10px; color: #38bdf8; font-family: monospace;">${otpCode}</span>
+        </div>
+
+        <p style="font-size: 13px; color: #94a3b8; text-align: center; margin-bottom: 24px;">
+          ⏱️ This code will expire in <strong>10 minutes</strong>. Never share this code with anyone.
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #1e293b; margin: 24px 0;" />
+        
+        <p style="font-size: 12px; color: #64748b; text-align: center; line-height: 1.5;">
+          If you did not create an IntervAI account, please disregard this message.<br/>
+          Sent from <a href="mailto:maurgk212104@gmail.com" style="color: #38bdf8; text-decoration: none;">maurgk212104@gmail.com</a>
+        </p>
       </div>
     `;
 
@@ -45,17 +74,36 @@ class EmailService {
     const text = `Hello ${fullName},\n\nYou requested a password reset for your IntervAI account. Click the link below to set a new password:\n\n${resetUrl}\n\nThis link expires in 30 minutes.\n\nBest regards,\nThe IntervAI Team`;
     
     const html = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background-color: #0B1B3A; color: #ffffff; border-radius: 12px;">
-        <h1 style="color: #38bdf8; margin-bottom: 8px;">IntervAI</h1>
-        <p style="font-size: 16px; color: #e2e8f0;">Hello ${fullName},</p>
-        <p style="font-size: 15px; color: #cbd5e1;">We received a request to reset the password for your IntervAI account. Click the button below to choose a new password:</p>
-        <div style="text-align: center; margin: 28px 0;">
-          <a href="${resetUrl}" style="background-color: #0284c7; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Reset My Password</a>
+      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px 24px; background-color: #0B1B3A; color: #ffffff; border-radius: 16px; border: 1px solid #1e3a6e;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <h1 style="color: #38bdf8; font-size: 28px; margin: 0; font-weight: 800; letter-spacing: -0.5px;">Interv<span style="color: #ffffff;">AI</span></h1>
+          <p style="color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px;">AI Interview Simulation Platform</p>
         </div>
-        <p style="font-size: 14px; color: #94a3b8;">Or copy and paste this link into your browser:<br/><a href="${resetUrl}" style="color: #38bdf8; word-break: break-all;">${resetUrl}</a></p>
-        <p style="font-size: 14px; color: #94a3b8;">This link will expire in <strong>30 minutes</strong>.</p>
-        <hr style="border: 0; border-top: 1px solid #334155; margin: 24px 0;" />
-        <p style="font-size: 12px; color: #64748b;">If you did not request this password reset, please ignore this email.</p>
+
+        <p style="font-size: 16px; color: #f8fafc;">Hello <strong>${fullName}</strong>,</p>
+        <p style="font-size: 14px; color: #cbd5e1; line-height: 1.6;">
+          We received a request to reset the password for your IntervAI account. Click the button below to choose a new password:
+        </p>
+
+        <div style="text-align: center; margin: 32px 0;">
+          <a href="${resetUrl}" style="background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%); color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);">
+            Reset My Password
+          </a>
+        </div>
+
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+          Or copy and paste this link into your browser:<br/>
+          <a href="${resetUrl}" style="color: #38bdf8; word-break: break-all;">${resetUrl}</a>
+        </p>
+        
+        <p style="font-size: 12px; color: #94a3b8;">
+          ⏱️ This link will expire in <strong>30 minutes</strong>.
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #1e293b; margin: 24px 0;" />
+        <p style="font-size: 12px; color: #64748b; text-align: center;">
+          If you did not request this password reset, please ignore this email.
+        </p>
       </div>
     `;
 
@@ -69,49 +117,35 @@ class EmailService {
     html: string,
     consoleSummary: string
   ): Promise<void> {
-    // Always print cleanly to server logs for effortless local dev inspection
-    console.log(`\n================== EMAIL SERVICE (${config.email.provider.toUpperCase()}) ==================`);
+    const transporter = this.getTransporter();
+
+    console.log(`\n================== EMAIL DISPATCH ==================`);
+    console.log(`From: ${config.email.from}`);
     console.log(`To: ${to}`);
     console.log(`Subject: ${subject}`);
     console.log(`${consoleSummary}`);
-    console.log(`=========================================================================\n`);
 
-    if (config.email.provider === 'smtp' && this.transporter) {
+    if (transporter) {
       try {
-        await this.transporter.sendMail({
+        console.log(`[EmailService] 📤 Dispatching real email via Gmail SMTP (${config.email.smtp.user})...`);
+        const info = await transporter.sendMail({
           from: config.email.from,
           to,
           subject,
           text,
           html,
         });
+        console.log(`[EmailService] ✅ Email sent successfully! MessageID: ${info.messageId}`);
       } catch (err: any) {
-        console.error(`[EmailService] SMTP error: ${err.message}`);
+        console.error(`[EmailService] ❌ Gmail SMTP delivery failed: ${err.message}`);
+        console.warn(`[EmailService] 💡 Tip: Ensure a 16-character Google App Password is set in backend/.env as SMTP_PASS`);
       }
-    } else if (config.email.provider === 'resend' && config.email.resendApiKey) {
-      try {
-        const response = await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${config.email.resendApiKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            from: config.email.from,
-            to,
-            subject,
-            text,
-            html,
-          }),
-        });
-        if (!response.ok) {
-          const errBody = await response.text();
-          console.error(`[EmailService] Resend API error: ${errBody}`);
-        }
-      } catch (err: any) {
-        console.error(`[EmailService] Resend network error: ${err.message}`);
-      }
+    } else {
+      console.log(`[EmailService] ℹ️ SMTP_PASS not set in backend/.env. Using console logger mode.`);
+      console.log(`[EmailService] 💡 To receive actual emails from ${config.email.smtp.user}, add SMTP_PASS=<your-16-char-app-password> in backend/.env`);
     }
+
+    console.log(`====================================================\n`);
   }
 }
 

@@ -138,7 +138,7 @@ export const VerifyEmailPage: React.FC = () => {
           Verify your email address
         </h2>
         <p className="mt-2 text-sm text-slate-400">
-          Enter the 6-digit code sent to your inbox to activate your account.
+          Enter the 6-digit code sent from <strong className="text-sky-400">maurgk212104@gmail.com</strong> to your inbox.
         </p>
       </div>
 

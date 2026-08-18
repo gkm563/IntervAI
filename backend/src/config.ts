@@ -23,13 +23,13 @@ export const config = {
   },
 
   email: {
-    provider: process.env.EMAIL_PROVIDER || 'console',
+    provider: process.env.EMAIL_PROVIDER || 'gmail', // 'gmail', 'smtp', 'resend', 'console'
     resendApiKey: process.env.RESEND_API_KEY || '',
-    from: process.env.EMAIL_FROM || 'IntervAI <auth@intervai.com>',
+    from: process.env.EMAIL_FROM || 'IntervAI <maurgk212104@gmail.com>',
     smtp: {
-      host: process.env.SMTP_HOST || '',
-      port: parseInt(process.env.SMTP_PORT || '587', 10),
-      user: process.env.SMTP_USER || '',
+      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      port: parseInt(process.env.SMTP_PORT || '465', 10),
+      user: process.env.SMTP_USER || 'maurgk212104@gmail.com',
       pass: process.env.SMTP_PASS || '',
     },
   },
