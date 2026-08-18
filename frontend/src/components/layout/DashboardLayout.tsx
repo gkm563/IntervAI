@@ -34,6 +34,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useGamification } from '../../context/GamificationContext';
 import { GamificationModal } from '../gamification/GamificationModal';
+import { GlobalSearchModal } from '../search/GlobalSearchModal';
 import { apiRequest } from '../../lib/api';
 import { NotificationItem, UserDashboardStats } from '../../lib/types';
 
@@ -55,6 +56,7 @@ export const DashboardLayout: React.FC = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [gamificationModalOpen, setGamificationModalOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   
   // Notification State
   const [notificationsOpen, setNotificationsOpen] = useState(false);
@@ -162,6 +164,18 @@ export const DashboardLayout: React.FC = () => {
     }
   };
 
+  // Global Ctrl+K / Cmd+K search shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const handleLogout = async () => {
     await logout();
     navigate('/login');
@@ -199,6 +213,13 @@ export const DashboardLayout: React.FC = () => {
       <GamificationModal
         isOpen={gamificationModalOpen}
         onClose={() => setGamificationModalOpen(false)}
+      />
+
+      {/* Global Command Palette / Search Modal */}
+      <GlobalSearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+        onOpenGamification={() => setGamificationModalOpen(true)}
       />
 
       {/* Floating XP Reward Toast */}
@@ -244,10 +265,32 @@ export const DashboardLayout: React.FC = () => {
           </Link>
         </div>
 
+        {/* Center: Global Search Bar Trigger (Click or Ctrl+K) */}
+        <div
+          onClick={() => setSearchModalOpen(true)}
+          className={`hidden md:flex items-center justify-between relative max-w-sm w-full mx-6 px-3.5 py-2 rounded-xl border cursor-pointer transition-all ${
+            theme === 'light'
+              ? 'bg-slate-50 border-slate-200 text-slate-500 hover:border-sky-400 shadow-sm'
+              : 'bg-slate-900/90 border-slate-700/80 text-slate-400 hover:border-sky-500/80'
+          }`}
+        >
+          <div className="flex items-center gap-2.5">
+            <Search className="w-4 h-4 text-sky-500" />
+            <span className="text-xs">Search questions, skills, modalities...</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <kbd className={`px-1.5 py-0.5 rounded text-[10px] font-mono font-bold border ${
+              theme === 'light' ? 'bg-white border-slate-200 text-slate-600' : 'bg-slate-800 border-slate-700 text-slate-300'
+            }`}>
+              Ctrl K
+            </kbd>
+          </div>
+        </div>
+
         {/* Center: Gamified XP & Streak Header Bar */}
         <div
           onClick={() => setGamificationModalOpen(true)}
-          className={`hidden md:flex items-center gap-3 px-3.5 py-1.5 rounded-2xl border cursor-pointer transition-all hover:scale-105 ${
+          className={`hidden xl:flex items-center gap-3 px-3.5 py-1.5 rounded-2xl border cursor-pointer transition-all hover:scale-105 ${
             theme === 'light'
               ? 'bg-slate-50 border-slate-200 hover:border-sky-400 shadow-sm'
               : 'bg-slate-900/90 border-slate-700/80 hover:border-sky-500/80'
