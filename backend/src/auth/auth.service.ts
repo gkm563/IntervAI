@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { config } from '../config';
 import { query } from '../database/db';
 import { emailService } from '../email/email.service';
+import { notificationsService } from '../notifications/notifications.service';
 import { AppError } from '../middleware/errorHandler';
 import { TokenPayload, User, UserSanitized } from '../types';
 import {
@@ -150,6 +151,15 @@ export class AuthService {
       `INSERT INTO refresh_tokens (id, user_id, token_hash, revoked, expires_at, created_at)
        VALUES ($1, $2, $3, false, $4, NOW())`,
       [uuidv4(), user.id, refreshTokenHash, refreshExpiresAt]
+    );
+
+    // Create initial welcome system notification
+    await notificationsService.createNotification(
+      user.id,
+      'Welcome to IntervAI! 🎉',
+      'Your email is verified. Upload your resume in the Resume tab to unlock personalized question generation.',
+      'AUTH',
+      '/dashboard/resume'
     );
 
     return {
@@ -348,6 +358,14 @@ export class AuthService {
 
     // Force re-login everywhere per Section 119.4 by invalidating all active refresh tokens
     await query('UPDATE refresh_tokens SET revoked = true WHERE user_id = $1', [resetRecord.user_id]);
+
+    // Send security notification
+    await notificationsService.createNotification(
+      resetRecord.user_id,
+      'Security Alert: Password Changed',
+      'Your account password was successfully updated. All other active sessions have been signed out.',
+      'AUTH'
+    );
 
     return {
       success: true,

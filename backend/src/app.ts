@@ -6,6 +6,7 @@ import authRoutes from './auth/auth.routes';
 import { config } from './config';
 import { errorHandler } from './middleware/errorHandler';
 import usersRoutes from './users/users.routes';
+import notificationsRoutes from './notifications/notifications.routes';
 
 export function createApp(): Express {
   const app = express();
@@ -70,6 +71,7 @@ export function createApp(): Express {
   // 5. API Routes
   app.use('/api/auth', authRoutes);
   app.use('/api/users', usersRoutes);
+  app.use('/api/notifications', notificationsRoutes);
 
   // 6. 404 Handler
   app.use((_req: Request, res: Response) => {

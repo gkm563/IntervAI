@@ -27,3 +27,6 @@ export function authenticateToken(
     throw new AppError('Invalid authentication token.', 401);
   }
 }
+
+export const requireAuth = authenticateToken;
+

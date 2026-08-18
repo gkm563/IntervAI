@@ -10,6 +10,7 @@ interface MockDbStore {
   emailVerifications: Map<string, any>;
   passwordResets: Map<string, any>;
   refreshTokens: Map<string, any>;
+  notifications: Map<string, any>;
 }
 
 const mockStore: MockDbStore = {
@@ -17,6 +18,7 @@ const mockStore: MockDbStore = {
   emailVerifications: new Map(),
   passwordResets: new Map(),
   refreshTokens: new Map(),
+  notifications: new Map(),
 };
 
 export function getPool(): Pool {
@@ -248,15 +250,64 @@ function executeMockQuery<T extends QueryResultRow>(text: string, params: any[] 
     return { rows: [], rowCount: 1, command: 'UPDATE', oid: 0, fields: [] };
   }
 
-  if (normalized.includes('update refresh_tokens set revoked = true where user_id = $1')) {
+  // Notifications
+  if (normalized.includes('insert into notifications')) {
+    const id = params[0];
+    const user_id = params[1];
+    const title = params[2];
+    const message = params[3];
+    const type = params[4] || 'SYSTEM';
+    const link_url = params[5] || null;
+    const record = { id, user_id, title, message, type, is_read: false, link_url, created_at: new Date() };
+    mockStore.notifications.set(id, record);
+    return { rows: [record as unknown as T], rowCount: 1, command: 'INSERT', oid: 0, fields: [] };
+  }
+
+  if (normalized.includes('select * from notifications where user_id = $1')) {
     const userId = params[0];
-    Array.from(mockStore.refreshTokens.values())
-      .filter((r) => r.user_id === userId)
-      .forEach((r) => {
-        r.revoked = true;
-        mockStore.refreshTokens.set(r.id, r);
+    const list = Array.from(mockStore.notifications.values())
+      .filter((n) => n.user_id === userId)
+      .sort((a, b) => b.created_at.getTime() - a.created_at.getTime());
+    return { rows: list as unknown as T[], rowCount: list.length, command: 'SELECT', oid: 0, fields: [] };
+  }
+
+  if (normalized.includes('select count(*) as count from notifications where user_id = $1 and is_read = false')) {
+    const userId = params[0];
+    const unreadCount = Array.from(mockStore.notifications.values())
+      .filter((n) => n.user_id === userId && !n.is_read).length;
+    return { rows: [{ count: unreadCount.toString() }] as unknown as T[], rowCount: 1, command: 'SELECT', oid: 0, fields: [] };
+  }
+
+  if (normalized.includes('update notifications set is_read = true where id = $1 and user_id = $2')) {
+    const id = params[0];
+    const userId = params[1];
+    const record = mockStore.notifications.get(id);
+    if (record && record.user_id === userId) {
+      record.is_read = true;
+      mockStore.notifications.set(id, record);
+    }
+    return { rows: [], rowCount: 1, command: 'UPDATE', oid: 0, fields: [] };
+  }
+
+  if (normalized.includes('update notifications set is_read = true where user_id = $1')) {
+    const userId = params[0];
+    Array.from(mockStore.notifications.values())
+      .filter((n) => n.user_id === userId)
+      .forEach((n) => {
+        n.is_read = true;
+        mockStore.notifications.set(n.id, n);
       });
     return { rows: [], rowCount: 1, command: 'UPDATE', oid: 0, fields: [] };
+  }
+
+  if (normalized.includes('delete from notifications where id = $1 and user_id = $2')) {
+    const id = params[0];
+    const userId = params[1];
+    const record = mockStore.notifications.get(id);
+    if (record && record.user_id === userId) {
+      mockStore.notifications.delete(id);
+    }
+    return { rows: [], rowCount: 1, command: 'DELETE', oid: 0, fields: [] };
   }
 
   return { rows: [], rowCount: 0, command: 'UNKNOWN', oid: 0, fields: [] };

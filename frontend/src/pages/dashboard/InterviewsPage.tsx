@@ -5,44 +5,22 @@ import {
   MessageSquare,
   Play,
   Clock,
-  Award,
   Sparkles,
   ChevronRight,
-  Filter,
-  CheckCircle2,
   Zap,
+  Inbox,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export const InterviewsPage: React.FC = () => {
   const { user } = useAuth();
   const [selectedMode, setSelectedMode] = useState<'VOICE' | 'VIDEO' | 'TEXT'>('TEXT');
-  const [selectedRole, setSelectedRole] = useState('Frontend Engineer (React / TypeScript)');
+  const [selectedRole, setSelectedRole] = useState(user?.targetRole || 'Frontend Software Engineer');
   const [selectedDifficulty, setSelectedDifficulty] = useState('MEDIUM');
-  const [targetCompany, setTargetCompany] = useState('Google / Amazon');
+  const [targetCompany, setTargetCompany] = useState(user?.targetCompany || 'Product Tech Company');
 
-  const pastInterviews = [
-    {
-      id: 'mock-1',
-      title: 'Full-Stack Architecture & State Management',
-      role: 'SDE-2 Fullstack',
-      date: 'Aug 18, 2026',
-      duration: '22 mins',
-      mode: 'TEXT',
-      score: 88,
-      status: 'COMPLETED',
-    },
-    {
-      id: 'mock-2',
-      title: 'React Internals, Virtual DOM & Performance',
-      role: 'Frontend Engineer',
-      date: 'Aug 16, 2026',
-      duration: '18 mins',
-      mode: 'VOICE',
-      score: 82,
-      status: 'COMPLETED',
-    },
-  ];
+  // Real empty interview history for new accounts (no dummy data)
+  const pastInterviews: any[] = [];
 
   return (
     <div className="space-y-8">
@@ -57,7 +35,7 @@ export const InterviewsPage: React.FC = () => {
             Interview Simulation Room
           </h1>
           <p className="text-sm text-slate-400 mt-1">
-            Launch interactive AI mock interviews tailored to your resume with real-time adaptive questioning.
+            Launch interactive AI mock interviews tailored to your candidate profile with real-time adaptive questioning.
           </p>
         </div>
       </div>
@@ -66,7 +44,7 @@ export const InterviewsPage: React.FC = () => {
       <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl space-y-6">
         <h2 className="text-lg font-bold text-white flex items-center gap-2">
           <Play className="w-5 h-5 text-sky-400" />
-          Configure & Launch New Interview Session
+          Configure & Launch New Mock Interview
         </h2>
 
         {/* Modality Selector */}
@@ -98,7 +76,7 @@ export const InterviewsPage: React.FC = () => {
             >
               <Video className={`w-5 h-5 mb-2 ${selectedMode === 'VIDEO' ? 'text-indigo-400' : 'text-slate-400'}`} />
               <div className="font-bold text-sm text-white">3D Avatar Video</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">Facial presence with viseme lip-sync</div>
+              <div className="text-[11px] text-slate-400 mt-0.5">Visual interviewer with viseme sync</div>
             </button>
 
             <button
@@ -156,11 +134,11 @@ export const InterviewsPage: React.FC = () => {
         <div className="pt-4 flex items-center justify-between border-t border-slate-800">
           <div className="text-xs text-slate-400 flex items-center gap-1.5">
             <Zap className="w-4 h-4 text-emerald-400" />
-            <span>AI question planner calibrated with your resume.</span>
+            <span>AI question planner configured for your profile.</span>
           </div>
 
           <button
-            onClick={() => alert('Starting Text-Mode Interview session! Full question generator and multi-turn state machine connects in Milestone 3.')}
+            onClick={() => alert('Starting Text-Mode simulation session! Real multi-turn AI engine connects in Milestone 3.')}
             className="flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-sky-500 via-sky-600 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-sky-500/25 transition-all cursor-pointer hover:scale-[1.02]"
           >
             <Play className="w-4 h-4" />
@@ -170,46 +148,22 @@ export const InterviewsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Past Mock Interviews Table */}
+      {/* Past Mock Interviews (Clean empty state) */}
       <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <h3 className="text-sm font-bold text-white flex items-center gap-2">
             <Clock className="w-4 h-4 text-sky-400" />
-            Recent Mock Interviews History
+            Interview History
           </h3>
-          <span className="text-xs text-slate-400">{pastInterviews.length} Completed</span>
+          <span className="text-xs text-slate-500">0 Completed</span>
         </div>
 
-        <div className="space-y-3">
-          {pastInterviews.map((item) => (
-            <div
-              key={item.id}
-              className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-slate-700 transition-all"
-            >
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-white">{item.title}</span>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                    {item.mode}
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400">{item.role} • {item.date} • {item.duration}</p>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="text-right">
-                  <div className="text-base font-black text-emerald-400">{item.score}%</div>
-                  <div className="text-[10px] text-slate-500">Readiness</div>
-                </div>
-                <button
-                  onClick={() => alert(`Viewing report for ${item.title}`)}
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-sky-400 border border-slate-700"
-                >
-                  View Report
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="p-8 text-center space-y-2 bg-slate-900/40 rounded-xl border border-slate-800/80">
+          <Inbox className="w-6 h-6 text-slate-500 mx-auto" />
+          <h4 className="text-xs font-bold text-slate-300">No mock interviews taken yet</h4>
+          <p className="text-[11px] text-slate-500 max-w-sm mx-auto">
+            Click the &quot;Start Mock Interview&quot; button above to begin your first practice session.
+          </p>
         </div>
       </div>
     </div>

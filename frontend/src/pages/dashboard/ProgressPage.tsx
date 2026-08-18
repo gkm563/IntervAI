@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   TrendingUp,
   Sparkles,
   Award,
-  Calendar,
-  CheckCircle2,
   BrainCircuit,
   Zap,
+  Play,
+  Inbox,
 } from 'lucide-react';
+import { apiRequest } from '../../lib/api';
+import { UserDashboardStats } from '../../lib/types';
 
 export const ProgressPage: React.FC = () => {
+  const [stats, setStats] = useState<UserDashboardStats>({
+    readinessScore: 0,
+    readinessLevel: 'Uncalibrated',
+    interviewsCompleted: 0,
+    totalQuestionsAnswered: 0,
+    weaknessesCount: 0,
+    hasResume: false,
+    activeDrillsCount: 0,
+  });
+
+  useEffect(() => {
+    apiRequest<{ success: boolean; stats: UserDashboardStats }>('/api/users/stats')
+      .then((res) => {
+        if (res.success && res.stats) setStats(res.stats);
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -26,64 +47,49 @@ export const ProgressPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Overview Metric Cards */}
+      {/* Real Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
-          <div className="text-xs text-slate-400 font-semibold uppercase">Overall Placement Readiness</div>
-          <div className="text-3xl font-black text-sky-400">74%</div>
-          <div className="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" />
-            <span>+14% since your first session</span>
+          <div className="text-xs text-slate-400 font-semibold uppercase">Placement Readiness</div>
+          <div className="text-3xl font-black text-sky-400">{stats.readinessScore}%</div>
+          <div className="text-[11px] text-slate-500 font-medium">
+            {stats.interviewsCompleted === 0 ? 'Uncalibrated (Take 1st Mock)' : stats.readinessLevel}
           </div>
         </div>
 
         <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
-          <div className="text-xs text-slate-400 font-semibold uppercase">Total Questions Answered</div>
-          <div className="text-3xl font-black text-indigo-400">28</div>
-          <div className="text-[11px] text-slate-400 font-medium">Across 4 mock interviews & drills</div>
+          <div className="text-xs text-slate-400 font-semibold uppercase">Questions Answered</div>
+          <div className="text-3xl font-black text-indigo-400">{stats.totalQuestionsAnswered}</div>
+          <div className="text-[11px] text-slate-500 font-medium">Across {stats.interviewsCompleted} sessions</div>
         </div>
 
         <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
           <div className="text-xs text-slate-400 font-semibold uppercase">Weaknesses Overcome</div>
-          <div className="text-3xl font-black text-emerald-400">5 / 7</div>
-          <div className="text-[11px] text-emerald-400 font-medium">71% mastery rate</div>
+          <div className="text-3xl font-black text-emerald-400">{stats.weaknessesCount}</div>
+          <div className="text-[11px] text-slate-500 font-medium">Auto-tracked over time</div>
         </div>
       </div>
 
-      {/* Progress Chart Placeholder / Visualizer */}
-      <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl space-y-6">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <div>
-            <h2 className="text-lg font-bold text-white">Score Trajectory (Past 30 Days)</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Tracking Technical Depth, Communication & Relevance</p>
-          </div>
-          <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-            Steady Upward Trend
-          </span>
+      {/* Real Trajectory Card */}
+      <div className="glass-card rounded-2xl p-8 border border-slate-700/80 shadow-2xl space-y-6 text-center">
+        <div className="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mx-auto">
+          <TrendingUp className="w-7 h-7" />
+        </div>
+        <div className="space-y-1">
+          <h3 className="text-base font-bold text-white">Score Trajectory Tracker</h3>
+          <p className="text-xs text-slate-400 max-w-md mx-auto">
+            Your longitudinal progression graph across Technical Depth, STAR Structure, and Communication will plot here as you complete mock sessions.
+          </p>
         </div>
 
-        {/* Visual Bar Progression */}
-        <div className="grid grid-cols-4 gap-4 items-end h-44 pt-6 pb-2">
-          <div className="space-y-2 text-center">
-            <div className="text-[11px] font-bold text-slate-400">62%</div>
-            <div className="w-full bg-slate-800 hover:bg-sky-500/40 rounded-xl transition-all h-24"></div>
-            <div className="text-[10px] text-slate-500 font-semibold">Session 1</div>
-          </div>
-          <div className="space-y-2 text-center">
-            <div className="text-[11px] font-bold text-slate-400">71%</div>
-            <div className="w-full bg-slate-800 hover:bg-sky-500/40 rounded-xl transition-all h-28"></div>
-            <div className="text-[10px] text-slate-500 font-semibold">Session 2</div>
-          </div>
-          <div className="space-y-2 text-center">
-            <div className="text-[11px] font-bold text-slate-400">79%</div>
-            <div className="w-full bg-slate-800 hover:bg-sky-500/40 rounded-xl transition-all h-32"></div>
-            <div className="text-[10px] text-slate-500 font-semibold">Session 3</div>
-          </div>
-          <div className="space-y-2 text-center">
-            <div className="text-[11px] font-bold text-emerald-400">86%</div>
-            <div className="w-full bg-gradient-to-t from-sky-500 to-emerald-400 rounded-xl transition-all h-36 shadow-lg shadow-sky-500/20"></div>
-            <div className="text-[10px] text-emerald-400 font-bold">Latest</div>
-          </div>
+        <div className="pt-2">
+          <Link
+            to="/dashboard/interviews"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 font-bold text-xs border border-slate-700 transition-colors"
+          >
+            <Play className="w-4 h-4" />
+            <span>Take Diagnostic Mock</span>
+          </Link>
         </div>
       </div>
 
@@ -93,16 +99,10 @@ export const ProgressPage: React.FC = () => {
           <BrainCircuit className="w-4 h-4 text-sky-400" />
           AI Coach Long-Term Memory Notes
         </h3>
-        <ul className="space-y-2.5 text-xs text-slate-300">
-          <li className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-2.5">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-            <span>Candidate demonstrated mastery of browser rendering pipeline and React reconciler.</span>
-          </li>
-          <li className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-start gap-2.5">
-            <Zap className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
-            <span>Need further practice on database locking levels (pessimistic vs optimistic) under high concurrency.</span>
-          </li>
-        </ul>
+        <div className="p-6 text-center text-xs text-slate-500 bg-slate-900/40 rounded-xl border border-slate-800/80">
+          <Inbox className="w-5 h-5 text-slate-600 mx-auto mb-1" />
+          <p>No memory notes logged yet. Your AI Coach will record cross-session observations as you practice.</p>
+        </div>
       </div>
     </div>
   );

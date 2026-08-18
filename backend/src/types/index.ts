@@ -40,3 +40,27 @@ export interface TokenPayload {
 export interface AuthenticatedRequest extends Request {
   user?: TokenPayload;
 }
+
+export type NotificationType = 'AUTH' | 'SYSTEM' | 'INTERVIEW' | 'PRACTICE';
+
+export interface Notification {
+  id: string;
+  user_id: string;
+  title: string;
+  message: string;
+  type: NotificationType;
+  is_read: boolean;
+  link_url?: string | null;
+  created_at: Date;
+}
+
+export interface UserDashboardStats {
+  readinessScore: number;
+  readinessLevel: string;
+  interviewsCompleted: number;
+  totalQuestionsAnswered: number;
+  weaknessesCount: number;
+  hasResume: boolean;
+  activeDrillsCount: number;
+}
+

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheck,
@@ -13,15 +13,35 @@ import {
   Target,
   ArrowUpRight,
   Sparkles,
-  Award,
+  Inbox,
+  CheckCircle2,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { apiRequest } from '../../lib/api';
+import { UserDashboardStats } from '../../lib/types';
 
 export const OverviewPage: React.FC = () => {
   const { user } = useAuth();
-  const [interviewMode, setInterviewMode] = useState<'VOICE' | 'VIDEO' | 'TEXT'>('VOICE');
-  const [targetRole, setTargetRole] = useState('Frontend Engineer (React / TypeScript)');
+  const [interviewMode, setInterviewMode] = useState<'VOICE' | 'VIDEO' | 'TEXT'>('TEXT');
+  const [targetRole, setTargetRole] = useState(user?.targetRole || 'Software Engineer / SDE-1');
   const [difficulty, setDifficulty] = useState('MEDIUM');
+  const [stats, setStats] = useState<UserDashboardStats>({
+    readinessScore: 0,
+    readinessLevel: 'Uncalibrated',
+    interviewsCompleted: 0,
+    totalQuestionsAnswered: 0,
+    weaknessesCount: 0,
+    hasResume: false,
+    activeDrillsCount: 0,
+  });
+
+  useEffect(() => {
+    apiRequest<{ success: boolean; stats: UserDashboardStats }>('/api/users/stats')
+      .then((res) => {
+        if (res.success && res.stats) setStats(res.stats);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="space-y-8">
@@ -33,25 +53,24 @@ export const OverviewPage: React.FC = () => {
             <span>Account Verified & Active</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Welcome back, {user?.fullName || 'Candidate'}!
+            Welcome, {user?.fullName || 'Candidate'}!
           </h1>
           <p className="text-sm text-slate-300 max-w-xl leading-relaxed">
-            Your AI interview workspace is active. Complete your resume upload and launch targeted mock interview sessions to build interview confidence.
+            Your AI interview workspace is ready. Launch your first mock interview session or upload your resume to calibrate your placement readiness.
           </p>
         </div>
 
-        {/* Readiness Score Widget */}
+        {/* Real Readiness Score Widget (0% for new accounts) */}
         <div className="lg:col-span-4 bg-slate-900/90 rounded-2xl p-5 border border-slate-800 flex items-center justify-between gap-4">
           <div>
             <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Placement Readiness</div>
-            <div className="text-3xl font-black text-sky-400 mt-1">74%</div>
-            <div className="text-[11px] text-emerald-400 font-medium mt-0.5 flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" />
-              <span>+8% this week</span>
+            <div className="text-3xl font-black text-sky-400 mt-1">{stats.readinessScore}%</div>
+            <div className="text-[11px] text-slate-400 font-medium mt-0.5">
+              {stats.interviewsCompleted === 0 ? 'No sessions completed yet' : `${stats.interviewsCompleted} sessions completed`}
             </div>
           </div>
-          <div className="w-16 h-16 rounded-full border-4 border-slate-800 border-t-sky-400 border-r-teal-400 flex items-center justify-center text-xs font-bold text-white shadow-inner">
-            Level 2
+          <div className="w-16 h-16 rounded-full border-4 border-slate-800 border-t-sky-400 flex items-center justify-center text-xs font-bold text-white shadow-inner text-center">
+            {stats.interviewsCompleted === 0 ? 'New' : stats.readinessLevel.split(' ')[0]}
           </div>
         </div>
       </div>
@@ -65,7 +84,7 @@ export const OverviewPage: React.FC = () => {
               Launch New AI Mock Interview
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              Configure role calibration and interview modality for your upcoming session.
+              Configure role calibration and interview modality for your session.
             </p>
           </div>
 
@@ -109,6 +128,7 @@ export const OverviewPage: React.FC = () => {
               type="text"
               value={targetRole}
               onChange={(e) => setTargetRole(e.target.value)}
+              placeholder="e.g. SDE-1 Frontend Engineer, Backend Developer"
               className="w-full bg-[#0B1B3A] border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-sky-500"
             />
           </div>
@@ -130,23 +150,23 @@ export const OverviewPage: React.FC = () => {
         {/* Action Bar */}
         <div className="flex items-center justify-between pt-2">
           <span className="text-xs text-slate-400 flex items-center gap-1.5">
-            <Zap className="w-4 h-4 text-amber-400" />
-            <span>Text Mode active for Milestone 1 foundation</span>
+            <Zap className="w-4 h-4 text-sky-400" />
+            <span>AI question planner calibrated with your profile</span>
           </span>
 
           <Link
             to="/dashboard/interviews"
             className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-sky-500/20 transition-all"
           >
-            <span>Start Session</span>
+            <span>Configure & Start</span>
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
 
-      {/* 3-Column Dashboard Cards */}
+      {/* 3-Column Real Dynamic Dashboard Cards (Empty states for new accounts per Section 122.2) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* 1. Resume Quick Card */}
+        {/* 1. Resume Pipeline Card */}
         <Link
           to="/dashboard/resume"
           className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4 glass-card-hover group"
@@ -162,41 +182,46 @@ export const OverviewPage: React.FC = () => {
               Upload Your Resume
             </h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Upload your PDF/DOCX to unlock custom question generation based on your exact projects.
+              Upload your PDF/DOCX to extract skills, projects, and target role alignments.
             </p>
           </div>
 
           <div className="p-4 rounded-xl border border-dashed border-slate-700 bg-slate-900/50 text-center text-xs text-slate-400 group-hover:border-sky-500/50 transition-colors">
             <FileText className="w-6 h-6 text-slate-500 mx-auto mb-1.5 group-hover:text-sky-400 transition-colors" />
-            <span>Drag & drop resume PDF (Max 5MB)</span>
+            <span>Click to upload resume (Max 5MB)</span>
           </div>
         </Link>
 
-        {/* 2. Weakness & Strengths Card */}
-        <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-white uppercase tracking-wider">Top Weaknesses Detected</span>
-            <Target className="w-4 h-4 text-amber-400" />
-          </div>
-          <ul className="space-y-2.5 text-xs text-slate-300">
-            <li className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-start gap-2">
-              <span className="text-amber-400">•</span>
-              <span><strong>STAR Framing:</strong> Missing quantified metrics in project delivery answers.</span>
-            </li>
-            <li className="p-2.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-start gap-2">
-              <span className="text-amber-400">•</span>
-              <span><strong>Distributed DBs:</strong> Sharding vs Partitioning explanation depth.</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* 3. Recommended Practice Today */}
+        {/* 2. Real Weakness Detection Card (Genuine empty state) */}
         <div className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4">
           <div>
-            <span className="text-xs font-bold text-white uppercase tracking-wider">Today&apos;s Recommended Drill</span>
-            <h3 className="text-sm font-bold text-slate-200 mt-2 mb-1">State Management & Cache Invalidation</h3>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Weakness Analysis</span>
+              <Target className="w-4 h-4 text-slate-500" />
+            </div>
+            <h3 className="text-sm font-bold text-slate-200 mb-1">Growth Areas</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              10-minute rapid drill focusing on cache consistency trade-offs.
+              Diagnostic weaknesses are automatically compiled after your first mock interview.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-center space-y-1">
+            <Inbox className="w-5 h-5 text-slate-500 mx-auto" />
+            <div className="text-xs font-semibold text-slate-300">No weaknesses detected yet</div>
+            <p className="text-[10px] text-slate-500">Take a mock interview to generate actionable feedback.</p>
+          </div>
+        </div>
+
+        {/* 3. Recommended Practice Drills */}
+        <div className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Practice Drills</span>
+              <Sparkles className="w-4 h-4 text-sky-400" />
+            </div>
+            <h3 className="text-sm font-bold text-slate-200 mb-1">Targeted Question Drills</h3>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Practice foundational STAR structuring, system design, and role-specific questions.
             </p>
           </div>
 
@@ -205,7 +230,7 @@ export const OverviewPage: React.FC = () => {
               to="/dashboard/practice"
               className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-sky-400 border border-slate-700 transition-colors"
             >
-              <span>Practice 3 Targeted Questions</span>
+              <span>Explore Practice Library</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
           </div>

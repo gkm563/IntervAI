@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
   Bot,
@@ -18,8 +18,16 @@ import {
   User,
   Sparkles,
   ExternalLink,
+  CheckCheck,
+  Trash2,
+  Clock,
+  ShieldAlert,
+  Info,
+  CheckCircle,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { apiRequest } from '../../lib/api';
+import { NotificationItem, UserDashboardStats } from '../../lib/types';
 
 export const DashboardLayout: React.FC = () => {
   const { user, logout } = useAuth();
@@ -27,10 +35,131 @@ export const DashboardLayout: React.FC = () => {
   const location = useLocation();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  
+  // Notification State
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+  const [unreadCount, setUnreadCount] = useState<number>(0);
+  const [loadingNotifications, setLoadingNotifications] = useState<boolean>(false);
+  
+  // Dashboard Stats State (Real, no dummy data)
+  const [stats, setStats] = useState<UserDashboardStats>({
+    readinessScore: 0,
+    readinessLevel: 'Uncalibrated (Take 1st Mock)',
+    interviewsCompleted: 0,
+    totalQuestionsAnswered: 0,
+    weaknessesCount: 0,
+    hasResume: false,
+    activeDrillsCount: 0,
+  });
+
+  const notifRef = useRef<HTMLDivElement>(null);
+
+  // Close notifications dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (notifRef.current && !notifRef.current.contains(event.target as Node)) {
+        setNotificationsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Fetch real notifications and stats
+  const fetchNotifications = async () => {
+    try {
+      setLoadingNotifications(true);
+      const res = await apiRequest<{ success: boolean; notifications: NotificationItem[]; unreadCount: number }>('/api/notifications');
+      if (res.success) {
+        setNotifications(res.notifications || []);
+        setUnreadCount(res.unreadCount || 0);
+      }
+    } catch {
+      // Fallback empty if error
+    } finally {
+      setLoadingNotifications(false);
+    }
+  };
+
+  const fetchStats = async () => {
+    try {
+      const res = await apiRequest<{ success: boolean; stats: UserDashboardStats }>('/api/users/stats');
+      if (res.success && res.stats) {
+        setStats(res.stats);
+      }
+    } catch {
+      // Keep real 0 state
+    }
+  };
+
+  useEffect(() => {
+    fetchNotifications();
+    fetchStats();
+    
+    // Periodic light poll for new notifications every 30s
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleMarkAsRead = async (id: string, linkUrl?: string | null) => {
+    try {
+      await apiRequest(`/api/notifications/${id}/read`, { method: 'PATCH' });
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, is_read: true } : n))
+      );
+      setUnreadCount((prev) => Math.max(0, prev - 1));
+      if (linkUrl) {
+        setNotificationsOpen(false);
+        navigate(linkUrl);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleMarkAllRead = async () => {
+    try {
+      await apiRequest('/api/notifications/read-all', { method: 'PATCH' });
+      setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })));
+      setUnreadCount(0);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteNotification = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      await apiRequest(`/api/notifications/${id}`, { method: 'DELETE' });
+      const target = notifications.find((n) => n.id === id);
+      if (target && !target.is_read) {
+        setUnreadCount((prev) => Math.max(0, prev - 1));
+      }
+      setNotifications((prev) => prev.filter((n) => n.id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
     navigate('/login');
+  };
+
+  const formatRelativeTime = (dateStr: string) => {
+    try {
+      const diffMs = Date.now() - new Date(dateStr).getTime();
+      const diffMins = Math.floor(diffMs / 60000);
+      if (diffMins < 1) return 'Just now';
+      if (diffMins < 60) return `${diffMins}m ago`;
+      const diffHours = Math.floor(diffMins / 60);
+      if (diffHours < 24) return `${diffHours}h ago`;
+      const diffDays = Math.floor(diffHours / 24);
+      return `${diffDays}d ago`;
+    } catch {
+      return '';
+    }
   };
 
   const navItems = [
@@ -78,12 +207,12 @@ export const DashboardLayout: React.FC = () => {
           <Search className="w-4 h-4 absolute left-3.5 text-slate-400" />
           <input
             type="text"
-            placeholder="Search questions, projects, metrics..."
+            placeholder="Search questions, skills, feedback..."
             className="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all"
           />
         </div>
 
-        {/* Right: Actions & User Dropdown */}
+        {/* Right: Actions, Notifications & User Dropdown */}
         <div className="flex items-center gap-3 sm:gap-4">
           <Link
             to="/"
@@ -93,13 +222,112 @@ export const DashboardLayout: React.FC = () => {
             <ExternalLink className="w-3 h-3 text-slate-500" />
           </Link>
 
-          <button
-            className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors relative"
-            title="Notifications"
-          >
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-          </button>
+          {/* Real Notification Bell & Dropdown */}
+          <div className="relative" ref={notifRef}>
+            <button
+              onClick={() => {
+                setNotificationsOpen(!notificationsOpen);
+                if (!notificationsOpen) fetchNotifications();
+              }}
+              className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-colors relative cursor-pointer"
+              title="Notifications"
+            >
+              <Bell className="w-4 h-4" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1.5 right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-sky-500 text-white text-[10px] font-extrabold flex items-center justify-center animate-pulse">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
+            </button>
+
+            {/* Notification Dropdown Panel */}
+            {notificationsOpen && (
+              <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-[#0B1B3A] border border-slate-700 shadow-2xl z-50 overflow-hidden animate-in fade-in-50 duration-100">
+                <div className="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">Notifications</span>
+                    {unreadCount > 0 && (
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                        {unreadCount} new
+                      </span>
+                    )}
+                  </div>
+                  {unreadCount > 0 && (
+                    <button
+                      onClick={handleMarkAllRead}
+                      className="text-[11px] text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 cursor-pointer"
+                    >
+                      <CheckCheck className="w-3.5 h-3.5" />
+                      <span>Mark all read</span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Notifications List */}
+                <div className="max-h-80 overflow-y-auto divide-y divide-slate-800/60">
+                  {loadingNotifications ? (
+                    <div className="p-6 text-center text-xs text-slate-400">Loading notifications...</div>
+                  ) : notifications.length === 0 ? (
+                    <div className="p-8 text-center space-y-2">
+                      <div className="w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center mx-auto text-slate-500">
+                        <CheckCircle className="w-5 h-5" />
+                      </div>
+                      <div className="text-xs font-bold text-slate-300">You&apos;re all caught up!</div>
+                      <p className="text-[11px] text-slate-500">No notifications to display right now.</p>
+                    </div>
+                  ) : (
+                    notifications.map((notif) => (
+                      <div
+                        key={notif.id}
+                        onClick={() => handleMarkAsRead(notif.id, notif.link_url)}
+                        className={`p-3.5 flex items-start gap-3 hover:bg-slate-800/50 transition-colors cursor-pointer ${
+                          !notif.is_read ? 'bg-sky-950/20' : ''
+                        }`}
+                      >
+                        {/* Icon by Type */}
+                        <div className="mt-0.5 flex-shrink-0">
+                          {notif.type === 'AUTH' ? (
+                            <div className="w-7 h-7 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center">
+                              <ShieldAlert className="w-3.5 h-3.5" />
+                            </div>
+                          ) : (
+                            <div className="w-7 h-7 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
+                              <Info className="w-3.5 h-3.5" />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <h4 className={`text-xs font-bold truncate ${!notif.is_read ? 'text-white' : 'text-slate-300'}`}>
+                              {notif.title}
+                            </h4>
+                            <span className="text-[10px] text-slate-500 flex-shrink-0 flex items-center gap-1">
+                              <Clock className="w-2.5 h-2.5" />
+                              {formatRelativeTime(notif.created_at)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-slate-400 line-clamp-2 mt-0.5 leading-relaxed">
+                            {notif.message}
+                          </p>
+                        </div>
+
+                        {/* Delete Action */}
+                        <button
+                          onClick={(e) => handleDeleteNotification(notif.id, e)}
+                          className="text-slate-500 hover:text-rose-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          title="Delete notification"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* User Avatar & Dropdown */}
           <div className="relative">
@@ -189,20 +417,25 @@ export const DashboardLayout: React.FC = () => {
             })}
           </div>
 
-          {/* Sidebar Readiness Status Card */}
+          {/* Real Dynamic Sidebar Readiness Status (0% for new accounts) */}
           <div className="p-4 rounded-2xl bg-gradient-to-br from-sky-950/40 to-indigo-950/40 border border-sky-800/30 text-xs space-y-2.5">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-sky-400 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 Readiness Score
               </span>
-              <span className="text-xs font-extrabold text-emerald-400">74%</span>
+              <span className="text-xs font-extrabold text-emerald-400">{stats.readinessScore}%</span>
             </div>
             <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-              <div className="bg-gradient-to-r from-sky-400 to-emerald-400 h-1.5 rounded-full w-[74%]"></div>
+              <div
+                className="bg-gradient-to-r from-sky-400 to-emerald-400 h-1.5 rounded-full transition-all duration-500"
+                style={{ width: `${Math.max(4, stats.readinessScore)}%` }}
+              ></div>
             </div>
             <p className="text-slate-400 text-[10px] leading-relaxed">
-              Targeting: SDE-1 / Frontend Roles. Practice 2 drills to level up.
+              {stats.interviewsCompleted === 0
+                ? 'Complete your first diagnostic mock interview to calibrate your score.'
+                : `Status: ${stats.readinessLevel}.`}
             </p>
           </div>
         </aside>
