@@ -58,34 +58,34 @@ export const ResumePage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold mb-2 border border-sky-500/20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 text-xs font-bold mb-2 border border-sky-300 dark:border-sky-500/30 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Milestone 2 Specification</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
             Resume & Candidate Profile
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Manage your parsed resume content, skills, projects, and target role alignments.
           </p>
         </div>
       </div>
 
       {savedSuccess && (
-        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm">
+        <div className="p-4 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/30 flex items-center gap-3 text-emerald-800 dark:text-emerald-300 text-sm font-bold">
           <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
           <span>Profile preferences saved successfully!</span>
         </div>
       )}
 
       {/* Real Uploader Section */}
-      <div className="glass-card rounded-2xl p-8 border border-dashed border-slate-700 hover:border-sky-500/60 transition-all text-center space-y-4 cursor-pointer bg-slate-900/40">
-        <div className="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mx-auto shadow-lg">
+      <div className="glass-card rounded-2xl p-8 border border-dashed border-slate-300 dark:border-slate-700 hover:border-sky-500/60 transition-all text-center space-y-4 cursor-pointer bg-slate-50 dark:bg-slate-900/40">
+        <div className="w-16 h-16 rounded-2xl bg-sky-50 dark:bg-sky-500/10 border border-sky-200 dark:border-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 mx-auto shadow-lg">
           <UploadCloud className="w-8 h-8" />
         </div>
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-white">Upload your Resume (PDF or DOCX)</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">Upload your Resume (PDF or DOCX)</h3>
+          <p className="text-xs text-slate-600 dark:text-slate-400 max-w-md mx-auto">
             Drag and drop your file here, or click to browse. Max size 5MB. Full PDF parsing & vector embedding activates in Milestone 2.
           </p>
         </div>

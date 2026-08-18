@@ -72,14 +72,14 @@ export const PracticePage: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-500 text-xs font-semibold mb-2 border border-sky-500/20">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 text-xs font-bold mb-2 border border-sky-300 dark:border-sky-500/30 shadow-sm">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Gamified Practice Gym (+40 XP per Drill)</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           Targeted Practice Drills
         </h1>
-        <p className="text-sm text-slate-400 mt-1">
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
           Bite-sized question drills generated to strengthen specific competencies and level up your candidate ranking.
         </p>
       </div>
@@ -96,13 +96,13 @@ export const PracticePage: React.FC = () => {
             }}
             className={`glass-card rounded-2xl p-6 border transition-all cursor-pointer flex flex-col justify-between ${
               activeDrill === index
-                ? 'border-sky-500/80 bg-sky-950/20 shadow-xl'
-                : 'border-slate-800 hover:border-slate-700'
+                ? 'border-sky-500 bg-sky-50/50 dark:bg-sky-950/20 shadow-xl'
+                : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
             }`}
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-300 dark:border-sky-500/30 shadow-sm">
                   {drill.category}
                 </span>
                 <span className="text-xs text-amber-400 font-bold flex items-center gap-1">

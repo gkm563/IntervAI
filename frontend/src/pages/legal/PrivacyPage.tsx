@@ -20,7 +20,7 @@ export const PrivacyPage: React.FC = () => {
             <span>Back to Home</span>
           </Link>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-300 dark:border-emerald-500/30 shadow-sm">
             <Lock className="w-3.5 h-3.5" />
             <span>Data Privacy & Security</span>
           </div>

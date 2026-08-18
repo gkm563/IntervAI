@@ -20,7 +20,7 @@ export const TermsPage: React.FC = () => {
             <span>Back to Home</span>
           </Link>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold border border-sky-500/20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 text-xs font-bold border border-sky-300 dark:border-sky-500/30 shadow-sm">
             <Scale className="w-3.5 h-3.5" />
             <span>Legal Agreement</span>
           </div>

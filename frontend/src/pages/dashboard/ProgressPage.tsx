@@ -35,49 +35,49 @@ export const ProgressPage: React.FC = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold mb-2 border border-sky-500/20">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 text-xs font-bold mb-2 border border-sky-300 dark:border-sky-500/30 shadow-sm">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Milestone 8 Preview (Longitudinal Memory)</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           Readiness Progress & Memory Engine
         </h1>
-        <p className="text-sm text-slate-400 mt-1">
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
           Track your interview competency scores over time with persistent vector memory across all your sessions.
         </p>
       </div>
 
       {/* Real Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
-          <div className="text-xs text-slate-400 font-semibold uppercase">Placement Readiness</div>
-          <div className="text-3xl font-black text-sky-400">{stats.readinessScore}%</div>
-          <div className="text-[11px] text-slate-500 font-medium">
+        <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-bold uppercase">Placement Readiness</div>
+          <div className="text-3xl font-black text-sky-600 dark:text-sky-400">{stats.readinessScore}%</div>
+          <div className="text-[11px] text-slate-500 font-semibold">
             {stats.interviewsCompleted === 0 ? 'Uncalibrated (Take 1st Mock)' : stats.readinessLevel}
           </div>
         </div>
 
-        <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
-          <div className="text-xs text-slate-400 font-semibold uppercase">Questions Answered</div>
-          <div className="text-3xl font-black text-indigo-400">{stats.totalQuestionsAnswered}</div>
-          <div className="text-[11px] text-slate-500 font-medium">Across {stats.interviewsCompleted} sessions</div>
+        <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-bold uppercase">Questions Answered</div>
+          <div className="text-3xl font-black text-indigo-600 dark:text-indigo-400">{stats.totalQuestionsAnswered}</div>
+          <div className="text-[11px] text-slate-500 font-semibold">Across {stats.interviewsCompleted} sessions</div>
         </div>
 
-        <div className="glass-card rounded-2xl p-6 border border-slate-800 space-y-2">
-          <div className="text-xs text-slate-400 font-semibold uppercase">Weaknesses Overcome</div>
-          <div className="text-3xl font-black text-emerald-400">{stats.weaknessesCount}</div>
-          <div className="text-[11px] text-slate-500 font-medium">Auto-tracked over time</div>
+        <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="text-xs text-slate-600 dark:text-slate-400 font-bold uppercase">Weaknesses Overcome</div>
+          <div className="text-3xl font-black text-emerald-600 dark:text-emerald-400">{stats.weaknessesCount}</div>
+          <div className="text-[11px] text-slate-500 font-semibold">Auto-tracked over time</div>
         </div>
       </div>
 
       {/* Real Trajectory Card */}
-      <div className="glass-card rounded-2xl p-8 border border-slate-700/80 shadow-2xl space-y-6 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mx-auto">
+      <div className="glass-card rounded-2xl p-8 border border-slate-200 dark:border-slate-700/80 shadow-2xl space-y-6 text-center">
+        <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-500/10 border border-sky-200 dark:border-sky-500/20 flex items-center justify-center text-sky-600 dark:text-sky-400 mx-auto">
           <TrendingUp className="w-7 h-7" />
         </div>
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-white">Score Trajectory Tracker</h3>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white">Score Trajectory Tracker</h3>
+          <p className="text-xs text-slate-600 dark:text-slate-400 max-w-md mx-auto">
             Your longitudinal progression graph across Technical Depth, STAR Structure, and Communication will plot here as you complete mock sessions.
           </p>
         </div>

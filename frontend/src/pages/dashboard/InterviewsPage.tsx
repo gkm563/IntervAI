@@ -61,29 +61,29 @@ export const InterviewsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold mb-2 border border-sky-500/20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 text-xs font-bold mb-2 border border-sky-300 dark:border-sky-500/30 shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Interactive Multi-Modal Engine</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
             Interview Simulation Room
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Choose your preferred modality below (Voice, 3D Avatar, or Text) and practice real-time adaptive questioning.
           </p>
         </div>
       </div>
 
       {/* Main Interactive Launcher Card */}
-      <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl space-y-6">
-        <h2 className="text-lg font-bold text-white flex items-center gap-2">
-          <Play className="w-5 h-5 text-sky-400" />
+      <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700/80 shadow-2xl space-y-6">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <Play className="w-5 h-5 text-sky-500" />
           Configure & Launch Simulation Session
         </h2>
 
         {/* Modality Selector */}
         <div>
-          <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2.5">
+          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2.5">
             Choose Interview Modality
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

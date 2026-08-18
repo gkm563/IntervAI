@@ -169,45 +169,45 @@ export const OverviewPage: React.FC = () => {
         {/* 1. Resume Pipeline Card */}
         <Link
           to="/dashboard/resume"
-          className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4 glass-card-hover group"
+          className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4 glass-card-hover group"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-white uppercase tracking-wider">Resume Pipeline</span>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Resume Pipeline</span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-300 dark:border-sky-500/30 shadow-sm">
                 Milestone 2
               </span>
             </div>
-            <h3 className="text-sm font-bold text-slate-200 mb-1 group-hover:text-sky-300 transition-colors">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-slate-200 mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
               Upload Your Resume
             </h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Upload your PDF/DOCX to extract skills, projects, and target role alignments.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-dashed border-slate-700 bg-slate-900/50 text-center text-xs text-slate-400 group-hover:border-sky-500/50 transition-colors">
-            <FileText className="w-6 h-6 text-slate-500 mx-auto mb-1.5 group-hover:text-sky-400 transition-colors" />
-            <span>Click to upload resume (Max 5MB)</span>
+          <div className="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-center text-xs text-slate-600 dark:text-slate-400 group-hover:border-sky-500/50 transition-colors">
+            <FileText className="w-6 h-6 text-slate-500 mx-auto mb-1.5 group-hover:text-sky-500 transition-colors" />
+            <span className="font-semibold">Click to upload resume (Max 5MB)</span>
           </div>
         </Link>
 
         {/* 2. Real Weakness Detection Card (Genuine empty state) */}
-        <div className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4">
+        <div className="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-white uppercase tracking-wider">Weakness Analysis</span>
+              <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Weakness Analysis</span>
               <Target className="w-4 h-4 text-slate-500" />
             </div>
-            <h3 className="text-sm font-bold text-slate-200 mb-1">Growth Areas</h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-slate-200 mb-1">Growth Areas</h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
               Diagnostic weaknesses are automatically compiled after your first mock interview.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-center space-y-1">
+          <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-center space-y-1">
             <Inbox className="w-5 h-5 text-slate-500 mx-auto" />
-            <div className="text-xs font-semibold text-slate-300">No weaknesses detected yet</div>
+            <div className="text-xs font-bold text-slate-700 dark:text-slate-300">No weaknesses detected yet</div>
             <p className="text-[10px] text-slate-500">Take a mock interview to generate actionable feedback.</p>
           </div>
         </div>
