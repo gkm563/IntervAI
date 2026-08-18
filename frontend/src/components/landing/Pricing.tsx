@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Sparkles, Clock, Bell, CheckCircle2 } from 'lucide-react';
 
 export const Pricing: React.FC = () => {
   const [currency, setCurrency] = useState<'INR' | 'USD'>('INR');
+  const [joinedWaitlist, setJoinedWaitlist] = useState(false);
+
+  const handleJoinWaitlist = () => {
+    setJoinedWaitlist(true);
+    setTimeout(() => {
+      // Keep state true
+    }, 500);
+  };
 
   return (
     <section id="pricing" className="py-20 lg:py-28 bg-[#0B1B3A]/60 border-t border-slate-800">
@@ -14,7 +22,7 @@ export const Pricing: React.FC = () => {
             Transparent pricing for students and job seekers
           </p>
           <p className="text-slate-400 text-base">
-            Start with our generous free tier today. Upgrade only when you want unlimited AI voice simulations.
+            Start with our generous free tier today. Voice, 3D Avatar, Text modes, and Practice Drills are 100% active and free.
           </p>
 
           {/* Currency Toggle */}
@@ -43,11 +51,12 @@ export const Pricing: React.FC = () => {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           
-          {/* Free Tier */}
-          <div className="glass-card rounded-2xl p-8 border border-slate-700/80 flex flex-col justify-between">
+          {/* Free Tier — 100% Active */}
+          <div className="glass-card rounded-2xl p-8 border-2 border-emerald-500/60 flex flex-col justify-between shadow-xl shadow-emerald-500/10">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold mb-4 border border-slate-700">
-                <span>Free Forever for Students</span>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold mb-4 border border-emerald-500/30">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Active & Free for Students</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-1">Starter Practice</h3>
               <p className="text-xs text-slate-400 mb-6">Everything needed to practice your core resume projects.</p>
@@ -66,11 +75,15 @@ export const Pricing: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>Full Text-Mode Interviews (Unlimited)</span>
+                  <span>3D Avatar Video Simulations (Procedural lip-sync)</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>3 Free Voice & Avatar Mock Interviews / month</span>
+                  <span>Real-time Voice STT / TTS Audio Interviewing</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  <span>Full Text Mode & Targeted Practice Drills</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
@@ -81,61 +94,69 @@ export const Pricing: React.FC = () => {
 
             <Link
               to="/register"
-              className="w-full flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition-all text-center"
+              className="w-full flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 shadow-lg shadow-emerald-500/20 transition-all text-center"
             >
-              Get Started Free
+              Get Started Free (All Features Active)
             </Link>
           </div>
 
-          {/* Pro Career Tier */}
-          <div className="relative glass-card rounded-2xl p-8 border-2 border-sky-500/80 shadow-2xl flex flex-col justify-between bg-gradient-to-b from-[#0F244C] to-[#0B1B3A]">
+          {/* Career Pro — Coming Soon Feature */}
+          <div className="relative glass-card rounded-2xl p-8 border border-slate-700/80 shadow-2xl flex flex-col justify-between bg-gradient-to-b from-[#0F244C]/60 to-[#0B1B3A]/80">
             <div className="absolute -top-3.5 right-8">
-              <span className="inline-flex items-center gap-1 px-3.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white text-xs font-bold shadow-md">
-                <Sparkles className="w-3.5 h-3.5" />
-                Most Popular
+              <span className="inline-flex items-center gap-1 px-3.5 py-1 rounded-full bg-slate-800 text-amber-400 text-xs font-extrabold border border-amber-400/30 shadow-md">
+                <Clock className="w-3.5 h-3.5" />
+                Coming Soon
               </span>
             </div>
 
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold mb-4 border border-sky-500/20">
-                <span>Placement Mastery</span>
+                <span>Enterprise Tier</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-1">Career Pro</h3>
-              <p className="text-xs text-slate-400 mb-6">Unlimited voice, video, and memory-backed coaching.</p>
+              <p className="text-xs text-slate-400 mb-6">Advanced enterprise features & dedicated live recruiter mock calibrations.</p>
 
               <div className="flex items-baseline gap-1 mb-6">
                 <span className="text-4xl font-extrabold text-white">
                   {currency === 'INR' ? '₹499' : '$9'}
                 </span>
-                <span className="text-xs text-slate-400 font-medium">/ month</span>
+                <span className="text-xs text-slate-400 font-medium">/ month (Planned)</span>
               </div>
 
-              <ul className="space-y-3.5 text-sm text-slate-200 mb-8">
+              <ul className="space-y-3.5 text-sm text-slate-400 mb-8">
                 <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <span><strong>Unlimited</strong> Voice & 3D Avatar Simulations</span>
+                  <Clock className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>Company-specific bar-raiser calibrations (FAANG / Hedge Funds)</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <span>Company-specific interview calibrations (FAANG / Startups)</span>
+                  <Clock className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>Longitudinal vector memory tracking weakness trends across months</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <span>Longitudinal memory: AI tracks your weaknesses over time</span>
+                  <Clock className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>1-on-1 human expert mock review integration</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-sky-400 flex-shrink-0" />
-                  <span>Custom question retries & targeted improvement drills</span>
+                  <Clock className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>Custom institutional placement drive portal</span>
                 </li>
               </ul>
             </div>
 
-            <Link
-              to="/register"
-              className="w-full flex items-center justify-center py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 shadow-lg shadow-sky-500/25 transition-all text-center"
-            >
-              Start 7-Day Free Trial
-            </Link>
+            {joinedWaitlist ? (
+              <div className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-sm font-bold text-emerald-400 bg-emerald-950/40 border border-emerald-500/40 text-center animate-in fade-in-50 duration-150">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>You&apos;re on the Career Pro VIP Waitlist!</span>
+              </div>
+            ) : (
+              <button
+                onClick={handleJoinWaitlist}
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-sm font-bold text-slate-200 bg-slate-800/90 hover:bg-slate-700 hover:text-white border border-slate-700 transition-all text-center cursor-pointer"
+              >
+                <Bell className="w-4 h-4 text-amber-400" />
+                <span>Join Career Pro Early Access Waitlist</span>
+              </button>
+            )}
           </div>
 
         </div>
