@@ -39,18 +39,15 @@ html.light ::-webkit-scrollbar-thumb {
   background: #334155;
 }
 
-/* Glassmorphism & Card Utilities */
+/* ========================================================= */
+/* Comprehensive Glassmorphism & Theme Adaptation Tokens     */
+/* ========================================================= */
+
 .glass-card {
   background: rgba(15, 36, 76, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(56, 189, 248, 0.12);
-}
-
-html.light .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(203, 213, 225, 0.8);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
 .glass-card-hover {
@@ -63,17 +60,8 @@ html.light .glass-card {
   box-shadow: 0 12px 30px -10px rgba(2, 132, 199, 0.2);
 }
 
-html.light .glass-card-hover:hover {
-  box-shadow: 0 12px 24px -6px rgba(14, 165, 233, 0.12);
-  border-color: rgba(14, 165, 233, 0.4);
-}
-
 .radial-bg {
   background: radial-gradient(circle at 50% 0%, rgba(2, 132, 199, 0.15) 0%, rgba(7, 15, 34, 0) 70%);
-}
-
-html.light .radial-bg {
-  background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.1) 0%, rgba(248, 250, 252, 0) 70%);
 }
 
 .mesh-glow {
@@ -84,4 +72,119 @@ html.light .radial-bg {
   filter: blur(120px);
   pointer-events: none;
   opacity: 0.25;
+}
+
+/* ========================================================= */
+/* Light Mode Automatic High-Contrast Component Styling       */
+/* ========================================================= */
+
+html.light .glass-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light .glass-card-hover:hover {
+  box-shadow: 0 12px 24px -6px rgba(14, 165, 233, 0.15) !important;
+  border-color: rgba(14, 165, 233, 0.5) !important;
+}
+
+html.light .radial-bg {
+  background: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.12) 0%, rgba(248, 250, 252, 0) 70%) !important;
+}
+
+/* Surfaces & Containers */
+html.light header,
+html.light footer,
+html.light nav,
+html.light aside {
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+html.light section {
+  background-color: transparent;
+}
+
+html.light [class*="bg-[#0B1B3A]"],
+html.light [class*="bg-[#070F22]"],
+html.light [class*="bg-[#09152E]"],
+html.light [class*="bg-[#050A18]"],
+html.light [class*="bg-[#091226]"],
+html.light [class*="bg-[#050B18]"],
+html.light [class*="bg-[#0F244C]"] {
+  background-color: #FFFFFF;
+}
+
+html.light [class*="bg-slate-900"],
+html.light [class*="bg-slate-950"] {
+  background-color: #F8FAFC;
+}
+
+/* Borders */
+html.light [class*="border-slate-800"],
+html.light [class*="border-slate-700"] {
+  border-color: #E2E8F0;
+}
+
+/* Typography & Headings */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #0F172A;
+}
+
+html.light .text-white {
+  color: #0F172A;
+}
+
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light .text-slate-300 {
+  color: #334155;
+}
+
+html.light .text-slate-400 {
+  color: #64748B;
+}
+
+html.light .text-slate-500 {
+  color: #64748B;
+}
+
+/* Interactive Controls & Inputs */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Preserve White Text on Accent & Gradient Action Buttons */
+html.light button.bg-gradient-to-r,
+html.light a.bg-gradient-to-r,
+html.light [class*="from-sky-500"],
+html.light [class*="from-emerald-500"],
+html.light [class*="from-rose-500"],
+html.light [class*="bg-sky-500"],
+html.light [class*="bg-rose-500"],
+html.light [class*="bg-emerald-500"],
+html.light [class*="bg-indigo-600"] {
+  color: #FFFFFF !important;
+}
+
+html.light button.bg-gradient-to-r *,
+html.light a.bg-gradient-to-r *,
+html.light [class*="from-sky-500"] *,
+html.light [class*="from-emerald-500"] *,
+html.light [class*="from-rose-500"] * {
+  color: #FFFFFF !important;
 }
