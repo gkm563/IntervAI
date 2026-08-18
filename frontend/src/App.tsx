@@ -23,6 +23,8 @@ import { AdminUsersPage } from './pages/admin/AdminUsersPage';
 import { AdminSecurityPage } from './pages/admin/AdminSecurityPage';
 import { AdminBroadcastPage } from './pages/admin/AdminBroadcastPage';
 import { AdminQuestionsPage } from './pages/admin/AdminQuestionsPage';
+import { TermsPage } from './pages/legal/TermsPage';
+import { PrivacyPage } from './pages/legal/PrivacyPage';
 
 // Protected Route Guard
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -75,8 +77,12 @@ export const App: React.FC = () => {
         <AuthProvider>
           <Router>
             <Routes>
-              {/* Public Marketing Landing Page */}
+              {/* Public Marketing & Legal Pages */}
               <Route path="/" element={<LandingPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/terms-of-service" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPage />} />
 
           {/* Authentication Routes */}
           <Route

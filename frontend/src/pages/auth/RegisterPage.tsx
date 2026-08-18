@@ -213,7 +213,7 @@ export const RegisterPage: React.FC = () => {
                 className="mt-1 w-4 h-4 rounded bg-slate-800 border-slate-700 text-sky-500 focus:ring-sky-500 cursor-pointer"
               />
               <label htmlFor="terms" className="text-xs text-slate-400 cursor-pointer">
-                I agree to the <a href="#" className="text-sky-400 hover:underline">Terms of Service</a> and acknowledge the <a href="#" className="text-sky-400 hover:underline">Privacy Policy</a>.
+                I agree to the <Link to="/terms" target="_blank" className="text-sky-400 hover:underline">Terms of Service</Link> and acknowledge the <Link to="/privacy" target="_blank" className="text-sky-400 hover:underline">Privacy Policy</Link>.
               </label>
             </div>
 

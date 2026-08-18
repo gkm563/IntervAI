@@ -75,10 +75,10 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-semibold mb-4 text-xs uppercase tracking-wider">Legal & Trust</h4>
             <ul className="space-y-2.5">
-              <li><a href="#" className="hover:text-sky-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-sky-400 transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-sky-400 transition-colors">Data Security</a></li>
-              <li><a href="#" className="hover:text-sky-400 transition-colors">Cookie Settings</a></li>
+              <li><Link to="/privacy" className="hover:text-sky-400 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-sky-400 transition-colors">Terms of Service</Link></li>
+              <li><a href="#faq" className="hover:text-sky-400 transition-colors">Data Security & FAQ</a></li>
+              <li><Link to="/privacy" className="hover:text-sky-400 transition-colors">Cookie Settings</Link></li>
             </ul>
 
             <div className="mt-6 flex items-center gap-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 w-fit">
