@@ -5,7 +5,8 @@ class EmailService {
   private getTransporter(): nodemailer.Transporter | null {
     const isGmail = config.email.provider === 'gmail' || config.email.smtp.host.includes('gmail');
     const user = config.email.smtp.user || 'maurgk212104@gmail.com';
-    const pass = config.email.smtp.pass;
+    const rawPass = config.email.smtp.pass;
+    const pass = rawPass ? rawPass.trim().replace(/\s+/g, '') : '';
 
     if (!pass) {
       return null;
