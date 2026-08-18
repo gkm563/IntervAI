@@ -1,186 +1,120 @@
 # IntervAI 🚀
 ### AI-Powered Real-Time Interview Coach & Simulation Platform
 
-> **Status:** Milestone 1 (Foundation) Complete  
-> **Target:** Web-first, responsive, globally accessible AI interview platform optimized for Indian & international students / professionals  
+> **Author & Lead Architect:** Gautam Kumar Maurya ([@gkm563](https://github.com/gkm563)) • **United Institute of Technology (UIT)**  
 > **Repository:** [https://github.com/gkm563/IntervAI.git](https://github.com/gkm563/IntervAI.git)  
-> **Author:** Gautam Kumar Maurya ([@gkm563](https://github.com/gkm563))
+> **Target:** High-performance, multi-modal AI interview simulation platform optimized for campus placements and global engineering roles.
 
 ---
 
 ## 📖 Overview
 
-**IntervAI** is an AI-powered real-time mock interview simulation and coaching platform. Unlike static question banks, IntervAI parses your actual resume projects, calibrates questions against your target job role and company, and simulates realistic interview turns across **Voice**, **3D Avatar Video**, and **Text-Only** modes with deep feedback on technical depth, STAR structure, and communication.
+**IntervAI** is an advanced AI interview coach and simulation platform created by **Gautam Kumar Maurya (`gkm563`)** from **United Institute of Technology (`UIT`)**. Unlike static question banks, IntervAI parses candidate resume projects, calibrates questions against target job roles and companies, and simulates realistic interview turns across **Voice Mode**, **3D Avatar Video Mode**, and **Text Simulation** with deep multi-rubric feedback on technical depth, STAR structure, and communication.
 
 ---
 
-## 🏗️ Architecture & Service Boundaries (Section 118 & 130)
+## 🌟 Major Platform Capabilities
 
-IntervAI enforces strict service separation:
+```mermaid
+graph TD
+  User[Candidate / Recruiter] --> Auth[Real Gmail SMTP OTP Auth]
+  Auth --> Dash[Candidate Workspace]
+  Dash --> Modalities[Multi-Modal Simulation Room]
+  Modalities --> V1[🎙️ Voice STT / TTS Mode]
+  Modalities --> V2[🤖 3D Avatar Video + Lip-Sync]
+  Modalities --> V3[💬 Text-Only STAR Simulation]
+  Dash --> Gamify[🎮 Gamified Learning Gym]
+  Gamify --> XP[XP Progression & Levels]
+  Gamify --> Streaks[🔥 Daily Practice Streaks]
+  Gamify --> Quests[🏆 Achievement Badges & Quests]
+  Dash --> Search[🔍 Smart Search Ctrl+K]
+  Dash --> Theme[☀️ Light / 🌙 Dark Mode]
+  User --> Admin[🛡️ High-Security Master Admin Portal /admin]
+```
+
+### 1. 🎙️ Multi-Modal Interview Room
+- **Voice Mode**: Real-time continuous Speech-to-Text (STT) transcription and natural Speech-Synthesis (TTS) AI voice playback.
+- **3D Avatar Video Mode**: 60 FPS Canvas procedural 3D interviewer mesh with viseme phoneme mouth synchronization, gazing, and candidate webcam mirror stream.
+- **Text Mode**: Rapid, low-bandwidth chat simulation with instant multi-rubric scoring (Relevance, Technical Depth, Clarity, and STAR structuring).
+
+### 2. 🎮 Gamified Learning & Progression Gym
+- **XP Progression & Tiers**: 5 candidate levels (*Code Cadet* ➡️ *Algorithm Apprentice* ➡️ *Architecture Ace* ➡️ *Staff Strategist* ➡️ *Principal Prodigy*).
+- **Daily Practice Streaks**: 🔥 Multi-day streak flame tracker in the navigation bar.
+- **Achievement Badges & Quests**: Interactive Trophy Showcase modal with claimable XP rewards for daily warmup drills and STAR challenges.
+- **Celebratory Toasts**: Floating gold XP banner bursts upon completing mock turns.
+
+### 3. 🔍 Global Smart Search & Command Palette (`Ctrl + K`)
+- Instant fuzzy search across question drills, interview modalities, navigation routes, appearance settings, and platform actions with full keyboard navigation (`↑`/`↓`/`Enter`/`Esc`).
+
+### 4. ☀️ Light Mode & 🌙 Dark Navy Mode
+- Seamless theme toggle between **Dark Navy Mode** (`#070F22`) and **Crisp Light Mode** (`#F8FAFC`), persisted in `localStorage`.
+
+### 5. 🛡️ High-Security Master Admin Portal (`/admin`)
+- **Level 5 Root Clearance**: Master Super Admin pre-authorized for `maurgk212104@gmail.com` (Gautam Kumar Maurya).
+- **Role-Based Access Control (RBAC)**: Backend `requireAdmin` token guards and frontend `AdminRoute` security shields.
+- **System Telemetry**: Real-time host CPU, RAM, PostgreSQL pool, and Gmail SMTP 465 connection health.
+- **Candidate Moderation**: Searchable directory with user activation/suspension and admin role promotions.
+- **Broadcast Alert Dispatcher**: Push high-priority announcements directly to candidate inboxes.
+- **Question Bank Manager**: Curate, categorize, and calibrate mock interview questions.
+
+### 6. 🌐 Comprehensive SEO & Structured Data
+- Schema.org multi-entity JSON-LD graph indexing **Gautam Kumar Maurya (gkm563)** and **United Institute of Technology (UIT)**, with dynamic `robots.txt` and `sitemap.xml`.
+
+---
+
+## 🏗️ Repository Structure
 
 ```text
 intervai/
-├── docs/                      # Full technical documentation suite
 ├── frontend/                  # React 18 + Vite + TypeScript + Tailwind CSS
-├── backend/                   # Node.js / TypeScript Modular Backend (Auth & Relational Data)
-├── ai-service/                # Python + FastAPI (Stateless AI Computation & Question Engine)
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── interview/     # 3D AvatarCanvas, VoiceEngine STT/TTS, WebcamPreview, ActiveInterviewRoom
+│   │   │   ├── gamification/  # GamificationModal & Quests
+│   │   │   ├── search/        # GlobalSearchModal (Ctrl+K)
+│   │   │   └── layout/        # DashboardLayout, Navbar, Footer
+│   │   ├── context/           # AuthContext, ThemeContext, GamificationContext
+│   │   └── pages/
+│   │       ├── auth/          # Register, Login, VerifyEmail (Gmail OTP), ResetPassword
+│   │       ├── dashboard/     # Overview, Resume, Interviews, Reports, Practice, Progress, Schedule, Settings
+│   │       └── admin/         # AdminLayout, AdminOverview, AdminUsers, AdminSecurity, AdminBroadcast, AdminQuestions
+├── backend/                   # Node.js + Express + TypeScript + PostgreSQL
+│   ├── src/
+│   │   ├── admin/             # Admin Controller, Middleware, Routes, Audit Service
+│   │   ├── auth/              # JWT, Argon2, Refresh Tokens, Email OTP
+│   │   ├── email/             # Nodemailer Gmail SMTP Relay (maurgk212104@gmail.com)
+│   │   ├── notifications/     # Notification Service & API
+│   │   └── database/          # PostgreSQL Client & Migrations
 ├── infrastructure/            # Docker, Nginx Reverse Proxy, and Postgres migrations
-├── .github/workflows/         # CI pipeline for automated build & test validation
-├── docker-compose.yml         # One-command orchestration
-├── CHANGELOG.md               # Milestone changelog
+├── docker-compose.yml         # One-command full stack orchestration
 └── README.md
 ```
 
-### Service Principles:
-1. **Core Backend (`backend/`)**: Single source of truth for identity, PostgreSQL relational schema, and session cookies.
-2. **AI Microservice (`ai-service/`)**: Pure stateless microservice for LLM reasoning, question generation, and evaluation.
-3. **Web Client (`frontend/`)**: High-performance React SPA with responsive design, instant demo simulations, and accessible auth.
-4. **Primary Database**: PostgreSQL 16 with `pgvector` extension (Supabase Free Tier / Docker pgvector).
-
 ---
 
-## 🎯 Milestone 1 Deliverables (Foundation)
+## 🚀 Running Locally
 
-| Deliverable | Status | Description |
-|---|---|---|
-| **1. Repository Scaffold** | ✅ Completed | Structure matching Section 130 with `docs/`, `backend/`, `frontend/`, `ai-service/`, `infrastructure/`. |
-| **2. Docker Compose** | ✅ Completed | `docker-compose.yml` bringing up PostgreSQL 16 + pgvector, Backend, Frontend, and AI Service with one command. |
-| **3. Database Migration** | ✅ Completed | `001_initial_auth_schema.sql` defining `users`, `email_verifications`, `password_resets`, `refresh_tokens`, and future entity stubs. |
-| **4. Authentication Flow** | ✅ Completed | Register → Email OTP (6-digit, 10m expiry) → Login → Silent Refresh (`httpOnly` cookie) → Forgot/Reset Password with global session revocation. |
-| **5. Landing Page Skeleton** | ✅ Completed | Section 121 compliant landing page with Hero, 60s interactive demo turn, Problem cards, How-it-works, Feature grid, Modality tabs, Pricing (INR/USD), FAQs, and SEO structured data. |
-| **6. Dashboard Skeleton** | ✅ Completed | Section 122 compliant candidate dashboard with Readiness score ring, interview launcher, and navigation. |
-
----
-
-## 🚀 Quickstart: Running Locally
-
-### Option A: Via Docker Compose (Recommended)
-Make sure Docker Desktop is installed and running, then run:
-
-```bash
-# From repository root:
-docker compose up --build
-```
-
-Services will be available at:
-- **Frontend Web App:** [http://localhost:5173](http://localhost:5173)
-- **Core Backend API:** [http://localhost:4000/api](http://localhost:4000/api)
-- **AI Microservice:** [http://localhost:8000/health](http://localhost:8000/health)
-- **PostgreSQL + pgvector:** `localhost:5432` (`postgres` / `postgrespassword`)
-
----
-
-### Option B: Native Development Mode (Zero-Config Standalone)
-
-You can run each service directly using Node.js (v18+) and Python (3.10+):
-
-#### 1. Start Core Backend
+### 1. Start Backend & Database
 ```bash
 cd backend
 npm install
-npm run build
 npm run dev
-# Server will listen on http://localhost:4000
 ```
-> *Note:* If no local PostgreSQL is running, the backend automatically uses its resilient zero-config embedded development engine so you can test authentication immediately!
+Backend API will start on **`http://localhost:4000`** with live Gmail SMTP delivery.
 
-#### 2. Start Frontend Web Client
+### 2. Start Frontend Web Client
 ```bash
 cd frontend
 npm install
 npm run dev
-# Client will run at http://localhost:5173
 ```
-
-#### 3. Start AI Microservice
-```bash
-cd ai-service
-pip install -r requirements.txt
-python -m uvicorn app.main:app --port 8000 --reload
-```
+Frontend Client will open on **`http://localhost:5173`**.
 
 ---
 
-## 🧪 Testing & Verification
+## 👨‍💻 Author & Institutional Credit
 
-### Run Automated Backend Auth Flow Tests
-```bash
-cd backend
-npm run build
-node dist/test-auth.js
-```
-This automated suite verifies:
-- `/health` endpoint status
-- User registration & OTP generation
-- Unverified account login protection (403 block)
-- Invalid OTP rejection
-- Anti-enumeration behavior on forgot-password requests
-
-### Manual End-to-End Auth Journey
-1. Open [http://localhost:5173/](http://localhost:5173/) in your browser.
-2. Click **"Get Started Free"** or navigate to `/register`.
-3. Enter your Name, Email, and a strong password (watch the live strength meter).
-4. Click **"Create Account & Verify"** — you will be redirected to `/verify-email`.
-5. In dev mode (`EMAIL_PROVIDER=console`), the 6-digit OTP code is logged directly to the backend terminal.
-6. Enter the 6 digits into the auto-focusing boxes and click **"Verify"**.
-7. You are automatically logged in with a secure JWT + `httpOnly` refresh cookie and redirected to `/dashboard`.
-8. Test **"Log out"**, then log back in via `/login`.
-9. Test **"Forgot Password"** on `/forgot-password` to receive the single-use reset link.
-
----
-
-## 🌐 Free-Tier Hosting Deployment Guide
-
-### 1. Frontend (Vercel / Netlify)
-- **Root Directory:** `frontend`
-- **Build Command:** `npm run build`
-- **Output Directory:** `dist`
-- **Environment Variables:** `VITE_API_URL=https://your-backend.onrender.com`
-
-### 2. Core Backend (Render / Railway / Oracle Free Tier)
-- **Root Directory:** `backend`
-- **Build Command:** `npm install && npm run build`
-- **Start Command:** `npm run start`
-- **Environment Variables:**
-  - `DATABASE_URL`: Your Supabase connection string (`postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres`)
-  - `DB_SSL`: `true`
-  - `JWT_ACCESS_SECRET`: Generate a 32-byte secret (`openssl rand -base64 32`)
-  - `JWT_REFRESH_SECRET`: Generate a 32-byte secret
-  - `CLIENT_URL`: `https://your-frontend.vercel.app`
-  - `EMAIL_PROVIDER`: `resend` (or `smtp`)
-  - `RESEND_API_KEY`: Your Resend free-tier API key
-
-### 3. AI Service (Render / Railway Free Tier)
-- **Root Directory:** `ai-service`
-- **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-- **Environment Variables:**
-  - `GROQ_API_KEY`: For free ultra-low latency Llama-3 inference
-  - `GEMINI_API_KEY`: For Google Gemini Flash free tier backup
-
----
-
-## 🔒 Security Best Practices Implemented
-
-- **Password Hashing:** Passwords hashed with `bcrypt` (work factor 12).
-- **Dual-Token Architecture:** Short-lived JWT access tokens stored strictly in memory + long-lived refresh tokens in `httpOnly`, `SameSite=Strict`, `Secure` cookies.
-- **Anti-Enumeration:** Password reset and OTP endpoints never reveal whether an email exists in the database.
-- **Session Revocation:** Password resets invalidate all active refresh tokens for that user across all devices.
-- **Rate Limiting:** Multi-window rate limiters prevent brute-force attacks on login, registration, and OTP endpoints.
-- **Security Headers:** `helmet` headers and strict CORS configuration with origin whitelisting.
-
----
-
-## 🗺️ Roadmap & Next Milestone
-
-- [x] **Milestone 1:** Foundation (Architecture, Database Schema, Full Auth Flow, Landing Page, Dashboard Skeleton, Docker Compose)
-- [ ] **Milestone 2:** Candidate Profile & Resume Pipeline (PDF/DOCX upload, AI extraction, structured storage, inline editor)
-- [ ] **Milestone 3:** Text-Mode Interview Engine (State machine, adaptive question generation, STAR evaluation)
-- [ ] **Milestone 4:** Report & Targeted Learning Path (Multi-metric reports, weakness drills)
-- [ ] **Milestone 5:** Voice Mode (STT / TTS streaming)
-- [ ] **Milestone 6:** 3D Human-like Avatar (Ready Player Me + Three.js + Viseme lip-sync)
-
----
-
-## 📄 License & Attribution
-Author: Gautam Kumar Maurya ([@gkm563](https://github.com/gkm563))  
-Built for students and job seekers worldwide.
+- **Architect & Developer:** Gautam Kumar Maurya ([@gkm563](https://github.com/gkm563))
+- **Email:** `maurgk212104@gmail.com`
+- **Institution:** United Institute of Technology (UIT)
+- **Repository:** [https://github.com/gkm563/IntervAI.git](https://github.com/gkm563/IntervAI.git)
