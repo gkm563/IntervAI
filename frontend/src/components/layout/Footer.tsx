@@ -89,10 +89,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Strip */}
-        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} IntervAI Platform. All rights reserved.</p>
-          <p className="flex items-center gap-1">
-            Built with <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> for Indian & Global Students by Gautam Kumar Maurya
+        <div className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>© {new Date().getFullYear()} IntervAI. Architected by <a href="https://github.com/gkm563" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline font-semibold">Gautam Kumar Maurya (gkm563)</a> • <span className="text-slate-300 font-medium">United Institute of Technology (UIT)</span></p>
+          <p className="flex items-center gap-1.5 text-slate-400">
+            <span>Built with</span>
+            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+            <span>for Campus Placements & Global Engineering Aspirants</span>
           </p>
         </div>
       </div>

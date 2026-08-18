@@ -1,0 +1,10 @@
+# Robots.txt for IntervAI — Created by Gautam Kumar Maurya (gkm563)
+# United Institute of Technology (UIT)
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /backend/
+
+# Sitemaps
+Sitemap: https://intervai.com/sitemap.xml
