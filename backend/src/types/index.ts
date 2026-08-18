@@ -64,3 +64,26 @@ export interface UserDashboardStats {
   activeDrillsCount: number;
 }
 
+export interface AdminAuditLog {
+  id: string;
+  admin_id: string;
+  admin_email: string;
+  action: string;
+  target_resource?: string;
+  details?: string;
+  ip_address?: string;
+  created_at: Date;
+}
+
+export interface AdminQuestion {
+  id: string;
+  title: string;
+  category: string;
+  difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+  question: string;
+  focus: string;
+  xp_reward: number;
+  created_at: Date;
+}
+
+

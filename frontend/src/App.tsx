@@ -16,6 +16,13 @@ import { PracticePage } from './pages/dashboard/PracticePage';
 import { ProgressPage } from './pages/dashboard/ProgressPage';
 import { SchedulePage } from './pages/dashboard/SchedulePage';
 import { SettingsPage } from './pages/dashboard/SettingsPage';
+import { AdminRoute } from './components/auth/AdminRoute';
+import { AdminLayout } from './pages/admin/AdminLayout';
+import { AdminOverviewPage } from './pages/admin/AdminOverviewPage';
+import { AdminUsersPage } from './pages/admin/AdminUsersPage';
+import { AdminSecurityPage } from './pages/admin/AdminSecurityPage';
+import { AdminBroadcastPage } from './pages/admin/AdminBroadcastPage';
+import { AdminQuestionsPage } from './pages/admin/AdminQuestionsPage';
 
 // Protected Route Guard
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -126,6 +133,22 @@ export const App: React.FC = () => {
 
             {/* 8. Account & Security Settings */}
             <Route path="settings" element={<SettingsPage />} />
+          </Route>
+
+          {/* Master Administrative Portal (Guarded by AdminRoute) */}
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<AdminOverviewPage />} />
+            <Route path="users" element={<AdminUsersPage />} />
+            <Route path="security" element={<AdminSecurityPage />} />
+            <Route path="broadcast" element={<AdminBroadcastPage />} />
+            <Route path="questions" element={<AdminQuestionsPage />} />
           </Route>
 
           {/* Catch-all redirect */}

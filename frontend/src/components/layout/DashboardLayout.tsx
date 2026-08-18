@@ -492,6 +492,16 @@ export const DashboardLayout: React.FC = () => {
                   <Trophy className="w-4 h-4 text-amber-500" />
                   Quests & Badges
                 </button>
+                {(user?.email === 'maurgk212104@gmail.com' || user?.role === 'ADMIN') && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setUserDropdownOpen(false)}
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-bold text-rose-400 hover:bg-rose-500/10 transition-colors"
+                  >
+                    <ShieldAlert className="w-4 h-4 text-rose-400" />
+                    <span>Master Admin Portal</span>
+                  </Link>
+                )}
                 <div className={`my-1 border-t ${theme === 'light' ? 'border-slate-100' : 'border-slate-800'}`}></div>
                 <button
                   onClick={handleLogout}
