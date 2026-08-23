@@ -950,3 +950,7 @@ Daily activity and development milestones tracking.
 - **Activity**: fix: address retry logic on api timeouts
 - **Checkpoint**: `784951`
 
+### Entry: 2026-08-23 20:43:17
+- **Activity**: docs(architecture): add prompt engineering notes
+- **Checkpoint**: `418436`
+
