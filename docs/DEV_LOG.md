@@ -4218,3 +4218,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `refactor(prompt): improve roleplay persona context injection`
 - **Ref**: `sync-330211`
 
+### Sprint Update: 2026-08-29 11:03:35
+- **Scope**: `test(eval): add regression tests for scoring consistency`
+- **Ref**: `sync-753398`
+
