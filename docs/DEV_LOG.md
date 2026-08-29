@@ -4222,3 +4222,7 @@ Daily activity and development milestones tracking.
 - **Scope**: `test(eval): add regression tests for scoring consistency`
 - **Ref**: `sync-753398`
 
+### Sprint Update: 2026-08-29 13:13:17
+- **Scope**: `test(eval): add regression tests for scoring consistency`
+- **Ref**: `sync-851490`
+
