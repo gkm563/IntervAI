@@ -998,3 +998,7 @@ Daily activity and development milestones tracking.
 - **Activity**: refactor: clean response parsing functions
 - **Checkpoint**: `450723`
 
+### Entry: 2026-08-31 11:18:56
+- **Activity**: docs(architecture): add prompt engineering notes
+- **Checkpoint**: `121844`
+
